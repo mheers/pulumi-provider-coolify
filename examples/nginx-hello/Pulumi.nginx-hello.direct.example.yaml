@@ -1,0 +1,7 @@
+config:
+  nginx:endpoint: https://coolify.example.com
+  # Set the token after copying this file:
+  # pulumi config set --secret nginx:token your-coolify-api-token
+  nginx:projectUuid: replace-with-coolify-project-uuid
+  nginx:serverUuid: replace-with-coolify-server-uuid
+  nginx:appDomain: http://nginx-hello.example.com

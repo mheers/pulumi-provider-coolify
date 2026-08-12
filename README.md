@@ -27,22 +27,31 @@ The provider imports the upstream framework provider through
 `provider/shim`. This is required because the upstream provider keeps its
 provider constructor under Go's `internal` import boundary.
 
+Detailed setup and usage instructions, including direct credentials and
+optional host-stack integration, are in `docs/USAGE.md`.
+
 ## Nginx Example
 
 `examples/nginx-hello` is a source example only. It is not run by `make build`
-or `make test`, and no live Pulumi stack configuration is committed. If you
-run it manually, it adopts an existing Coolify server/project and deploys
-`nginx:latest` without requiring a Git deploy key.
+or `make test`, and no live Pulumi stack configuration is committed. It can
+either read Coolify credentials from an existing host stack or use direct
+endpoint and token configuration without a host stack. In both modes it adopts
+an existing Coolify server/project and deploys `nginx:latest` without requiring
+a Git deploy key.
 
-Copy the example configuration, replace every placeholder, and review the
-preview before applying it:
+Copy one of the example configurations, replace every placeholder, and review
+the preview before applying it:
 
 ```bash
 make build
 cd examples/nginx-hello
 pulumi stack init nginx-hello
 cp Pulumi.nginx-hello.example.yaml Pulumi.nginx-hello.yaml
-# Edit Pulumi.nginx-hello.yaml with your own stack and Coolify identifiers.
+# Host-stack mode: edit Pulumi.nginx-hello.yaml with your host stack and
+# Coolify identifiers.
+# Direct mode: use Pulumi.nginx-hello.direct.example.yaml instead and provide
+# the endpoint and Coolify identifiers, then set the token with:
+# pulumi config set --secret nginx:token your-coolify-api-token
 PATH="../../bin:$PATH" pulumi preview --stack nginx-hello
 PATH="../../bin:$PATH" pulumi up --stack nginx-hello
 ```
@@ -53,17 +62,6 @@ project.
 
 The `http://` domain is intentional: Caddy terminates public TLS and forwards
 to Coolify's internal proxy. The stack exports the public `https://` URL.
-
-## Real Showboat Deployment
-
-The real `expat-map-guide` deployment lives in the host repository at
-`coolify/expat-map-guide`, not in this provider's examples. It uses this
-provider through the local SDK and adopts the existing host stack through a
-Pulumi `StackReference`.
-
-The private GitLab repository needs a dedicated read-only deploy key registered
-on GitLab. Production also requires the Stripe values enforced by the
-application's configuration validation.
 
 ## License
 

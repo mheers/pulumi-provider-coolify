@@ -1,5 +1,10 @@
 config:
+  # Host-stack mode: derive the endpoint and token from an existing Pulumi stack.
   nginx:hostStack: your-org/your-host-project/your-host-stack
+  # Direct mode: omit nginx:hostStack and provide these two values instead.
+  # nginx:endpoint: https://coolify.example.com
+  # nginx:token:
+  #   secure: replace-with-coolify-api-token
   nginx:projectUuid: replace-with-coolify-project-uuid
   nginx:serverUuid: replace-with-coolify-server-uuid
   nginx:appDomain: http://nginx-hello.example.com

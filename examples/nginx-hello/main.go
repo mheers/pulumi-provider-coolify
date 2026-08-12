@@ -12,23 +12,31 @@ import (
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
 		cfg := config.New(ctx, "nginx")
-		hostStack, err := pulumi.NewStackReference(ctx, "showboat-host", &pulumi.StackReferenceArgs{
-			Name: pulumi.String(cfg.Require("hostStack")),
-		})
-		if err != nil {
-			return fmt.Errorf("create host stack reference: %w", err)
+		var endpoint pulumi.StringPtrInput
+		var token pulumi.StringPtrInput
+		if hostStackName := cfg.Get("hostStack"); hostStackName != "" {
+			hostStack, err := pulumi.NewStackReference(ctx, "showboat-host", &pulumi.StackReferenceArgs{
+				Name: pulumi.String(hostStackName),
+			})
+			if err != nil {
+				return fmt.Errorf("create host stack reference: %w", err)
+			}
+
+			endpoint = hostStack.GetStringOutput(pulumi.String("showboat:coolify:dashboard")).ToStringPtrOutput()
+			token = hostStack.GetOutput(pulumi.String("showboat:coolify:apiToken")).ApplyT(func(value any) *string {
+				valueString, ok := value.(string)
+				if !ok {
+					return nil
+				}
+				return &valueString
+			}).(pulumi.StringPtrOutput)
+		} else {
+			endpoint = pulumi.StringPtr(cfg.Require("endpoint"))
+			token = cfg.RequireSecret("token").ToStringPtrOutput()
 		}
 
-		endpoint := hostStack.GetStringOutput(pulumi.String("showboat:coolify:dashboard"))
-		token := hostStack.GetOutput(pulumi.String("showboat:coolify:apiToken")).ApplyT(func(value any) *string {
-			valueString, ok := value.(string)
-			if !ok {
-				return nil
-			}
-			return &valueString
-		}).(pulumi.StringPtrOutput)
 		provider, err := coolify.NewProvider(ctx, "coolify", &coolify.ProviderArgs{
-			Endpoint: endpoint.ApplyT(func(value string) *string { return &value }).(pulumi.StringPtrOutput),
+			Endpoint: endpoint,
 			Token:    token,
 		})
 		if err != nil {
