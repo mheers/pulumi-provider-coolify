@@ -11,6 +11,7 @@
     "license": "MPL-2.0",
     "attribution": "This Pulumi package is based on the [`coolify` Terraform Provider](https://github.com/coolify-terraform/terraform-provider-coolify).",
     "repository": "https://github.com/mheers/pulumi-provider-coolify",
+    "pluginDownloadURL": "github://api.github.com/mheers/pulumi-provider-coolify",
     "publisher": "mheers",
     "meta": {
         "moduleFormat": "(.*)(?:/[^/]*)"
