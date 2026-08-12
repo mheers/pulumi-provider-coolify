@@ -1,0 +1,5 @@
+config:
+  nginx:hostStack: your-org/your-host-project/your-host-stack
+  nginx:projectUuid: replace-with-coolify-project-uuid
+  nginx:serverUuid: replace-with-coolify-server-uuid
+  nginx:appDomain: http://nginx-hello.example.com

@@ -1,0 +1,1027 @@
+{
+    "auto-aliasing": {
+        "resources": {
+            "coolify_api_settings": {
+                "current": "coolify:index/apiSettings:ApiSettings"
+            },
+            "coolify_application": {
+                "current": "coolify:index/application:Application"
+            },
+            "coolify_application_docker_image": {
+                "current": "coolify:index/applicationDockerImage:ApplicationDockerImage"
+            },
+            "coolify_application_dockerfile": {
+                "current": "coolify:index/applicationDockerfile:ApplicationDockerfile"
+            },
+            "coolify_application_github_app": {
+                "current": "coolify:index/applicationGithubApp:ApplicationGithubApp"
+            },
+            "coolify_application_preview": {
+                "current": "coolify:index/applicationPreview:ApplicationPreview"
+            },
+            "coolify_application_private_git": {
+                "current": "coolify:index/applicationPrivateGit:ApplicationPrivateGit"
+            },
+            "coolify_backup_execution": {
+                "current": "coolify:index/backupExecution:BackupExecution"
+            },
+            "coolify_cloud_token": {
+                "current": "coolify:index/cloudToken:CloudToken"
+            },
+            "coolify_cloud_token_validate": {
+                "current": "coolify:index/cloudTokenValidate:CloudTokenValidate"
+            },
+            "coolify_database_backup": {
+                "current": "coolify:index/databaseBackup:DatabaseBackup"
+            },
+            "coolify_database_clickhouse": {
+                "current": "coolify:index/databaseClickhouse:DatabaseClickhouse"
+            },
+            "coolify_database_dragonfly": {
+                "current": "coolify:index/databaseDragonfly:DatabaseDragonfly"
+            },
+            "coolify_database_keydb": {
+                "current": "coolify:index/databaseKeydb:DatabaseKeydb"
+            },
+            "coolify_database_mariadb": {
+                "current": "coolify:index/databaseMariadb:DatabaseMariadb"
+            },
+            "coolify_database_mongodb": {
+                "current": "coolify:index/databaseMongodb:DatabaseMongodb"
+            },
+            "coolify_database_mysql": {
+                "current": "coolify:index/databaseMysql:DatabaseMysql"
+            },
+            "coolify_database_postgresql": {
+                "current": "coolify:index/databasePostgresql:DatabasePostgresql"
+            },
+            "coolify_database_redis": {
+                "current": "coolify:index/databaseRedis:DatabaseRedis"
+            },
+            "coolify_deployment": {
+                "current": "coolify:index/deployment:Deployment"
+            },
+            "coolify_destination": {
+                "current": "coolify:index/destination:Destination"
+            },
+            "coolify_environment": {
+                "current": "coolify:index/environment:Environment"
+            },
+            "coolify_environment_variable": {
+                "current": "coolify:index/environmentVariable:EnvironmentVariable"
+            },
+            "coolify_envs_bulk": {
+                "current": "coolify:index/envsBulk:EnvsBulk"
+            },
+            "coolify_github_app": {
+                "current": "coolify:index/githubApp:GithubApp"
+            },
+            "coolify_private_key": {
+                "current": "coolify:index/privateKey:PrivateKey"
+            },
+            "coolify_project": {
+                "current": "coolify:index/project:Project"
+            },
+            "coolify_resource_action": {
+                "current": "coolify:index/resourceAction:ResourceAction"
+            },
+            "coolify_scheduled_task": {
+                "current": "coolify:index/scheduledTask:ScheduledTask"
+            },
+            "coolify_server": {
+                "current": "coolify:index/server:Server"
+            },
+            "coolify_server_digitalocean": {
+                "current": "coolify:index/serverDigitalocean:ServerDigitalocean"
+            },
+            "coolify_server_hetzner": {
+                "current": "coolify:index/serverHetzner:ServerHetzner"
+            },
+            "coolify_server_validate": {
+                "current": "coolify:index/serverValidate:ServerValidate"
+            },
+            "coolify_server_vultr": {
+                "current": "coolify:index/serverVultr:ServerVultr"
+            },
+            "coolify_service": {
+                "current": "coolify:index/service:Service",
+                "fields": {
+                    "urls": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_storage": {
+                "current": "coolify:index/storage:Storage"
+            },
+            "coolify_storage_backup": {
+                "current": "coolify:index/storageBackup:StorageBackup"
+            }
+        },
+        "datasources": {
+            "coolify_application": {
+                "current": "coolify:index/getApplication:getApplication"
+            },
+            "coolify_application_logs": {
+                "current": "coolify:index/getApplicationLogs:getApplicationLogs",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "logs": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_applications": {
+                "current": "coolify:index/getApplications:getApplications",
+                "fields": {
+                    "applications": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_backup_executions": {
+                "current": "coolify:index/getBackupExecutions:getBackupExecutions",
+                "fields": {
+                    "executions": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_cloud_token": {
+                "current": "coolify:index/getCloudToken:getCloudToken"
+            },
+            "coolify_cloud_tokens": {
+                "current": "coolify:index/getCloudTokens:getCloudTokens",
+                "fields": {
+                    "cloud_tokens": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_database": {
+                "current": "coolify:index/getDatabase:getDatabase"
+            },
+            "coolify_databases": {
+                "current": "coolify:index/getDatabases:getDatabases",
+                "fields": {
+                    "databases": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_deployment": {
+                "current": "coolify:index/getDeployment:getDeployment"
+            },
+            "coolify_deployments": {
+                "current": "coolify:index/getDeployments:getDeployments",
+                "fields": {
+                    "deployments": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_destination": {
+                "current": "coolify:index/getDestination:getDestination"
+            },
+            "coolify_destinations": {
+                "current": "coolify:index/getDestinations:getDestinations",
+                "fields": {
+                    "destinations": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_digitalocean_images": {
+                "current": "coolify:index/getDigitaloceanImages:getDigitaloceanImages",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "images": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_digitalocean_regions": {
+                "current": "coolify:index/getDigitaloceanRegions:getDigitaloceanRegions",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "regions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_digitalocean_sizes": {
+                "current": "coolify:index/getDigitaloceanSizes:getDigitaloceanSizes",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "sizes": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_digitalocean_ssh_keys": {
+                "current": "coolify:index/getDigitaloceanSshKeys:getDigitaloceanSshKeys",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "ssh_keys": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_environment": {
+                "current": "coolify:index/getEnvironment:getEnvironment"
+            },
+            "coolify_environment_variable": {
+                "current": "coolify:index/getEnvironmentVariable:getEnvironmentVariable"
+            },
+            "coolify_environment_variables": {
+                "current": "coolify:index/getEnvironmentVariables:getEnvironmentVariables",
+                "fields": {
+                    "environment_variables": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_environments": {
+                "current": "coolify:index/getEnvironments:getEnvironments",
+                "fields": {
+                    "environments": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_github_app": {
+                "current": "coolify:index/getGithubApp:getGithubApp"
+            },
+            "coolify_github_app_branches": {
+                "current": "coolify:index/getGithubAppBranches:getGithubAppBranches",
+                "fields": {
+                    "branches": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_github_app_repositories": {
+                "current": "coolify:index/getGithubAppRepositories:getGithubAppRepositories",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "repositories": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_github_apps": {
+                "current": "coolify:index/getGithubApps:getGithubApps",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "github_apps": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_health": {
+                "current": "coolify:index/getHealth:getHealth"
+            },
+            "coolify_hetzner_images": {
+                "current": "coolify:index/getHetznerImages:getHetznerImages",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "images": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_hetzner_locations": {
+                "current": "coolify:index/getHetznerLocations:getHetznerLocations",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "locations": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_hetzner_server_types": {
+                "current": "coolify:index/getHetznerServerTypes:getHetznerServerTypes",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "server_types": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_hetzner_ssh_keys": {
+                "current": "coolify:index/getHetznerSshKeys:getHetznerSshKeys",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "ssh_keys": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_private_key": {
+                "current": "coolify:index/getPrivateKey:getPrivateKey"
+            },
+            "coolify_private_keys": {
+                "current": "coolify:index/getPrivateKeys:getPrivateKeys",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "private_keys": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_project": {
+                "current": "coolify:index/getProject:getProject"
+            },
+            "coolify_projects": {
+                "current": "coolify:index/getProjects:getProjects",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "projects": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_resources": {
+                "current": "coolify:index/getResources:getResources",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "resources": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_scheduled_task": {
+                "current": "coolify:index/getScheduledTask:getScheduledTask"
+            },
+            "coolify_scheduled_tasks": {
+                "current": "coolify:index/getScheduledTasks:getScheduledTasks",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "tasks": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_server": {
+                "current": "coolify:index/getServer:getServer"
+            },
+            "coolify_server_domains": {
+                "current": "coolify:index/getServerDomains:getServerDomains",
+                "fields": {
+                    "domains": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_server_resources": {
+                "current": "coolify:index/getServerResources:getServerResources",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "resources": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_server_validation": {
+                "current": "coolify:index/getServerValidation:getServerValidation"
+            },
+            "coolify_servers": {
+                "current": "coolify:index/getServers:getServers",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "servers": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_service": {
+                "current": "coolify:index/getService:getService"
+            },
+            "coolify_services": {
+                "current": "coolify:index/getServices:getServices",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "services": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_storage": {
+                "current": "coolify:index/getStorage:getStorage"
+            },
+            "coolify_storages": {
+                "current": "coolify:index/getStorages:getStorages",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "storages": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_task_executions": {
+                "current": "coolify:index/getTaskExecutions:getTaskExecutions",
+                "fields": {
+                    "executions": {
+                        "maxItemsOne": false
+                    },
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "coolify_team": {
+                "current": "coolify:index/getTeam:getTeam",
+                "fields": {
+                    "members": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_team_members": {
+                "current": "coolify:index/getTeamMembers:getTeamMembers",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "members": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_teams": {
+                "current": "coolify:index/getTeams:getTeams",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "teams": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_version": {
+                "current": "coolify:index/getVersion:getVersion"
+            },
+            "coolify_vultr_os": {
+                "current": "coolify:index/getVultrOs:getVultrOs",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "operating_systems": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_vultr_plans": {
+                "current": "coolify:index/getVultrPlans:getVultrPlans",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "plans": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_vultr_regions": {
+                "current": "coolify:index/getVultrRegions:getVultrRegions",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "regions": {
+                        "maxItemsOne": false
+                    }
+                }
+            },
+            "coolify_vultr_ssh_keys": {
+                "current": "coolify:index/getVultrSshKeys:getVultrSshKeys",
+                "fields": {
+                    "filter": {
+                        "maxItemsOne": false,
+                        "elem": {
+                            "fields": {
+                                "values": {
+                                    "maxItemsOne": false
+                                }
+                            }
+                        }
+                    },
+                    "ssh_keys": {
+                        "maxItemsOne": false
+                    }
+                }
+            }
+        }
+    },
+    "auto-settings": {},
+    "default-resource-schema-fixups": {
+        "resources": {
+            "coolify_api_settings": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_application": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_application_docker_image": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_application_dockerfile": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_application_github_app": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_application_preview": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_application_private_git": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_backup_execution": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_cloud_token": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_cloud_token_validate": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_database_backup": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "coolify_database_clickhouse": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_database_dragonfly": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_database_keydb": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_database_mariadb": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_database_mongodb": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_database_mysql": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_database_postgresql": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_database_redis": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_deployment": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_destination": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_environment": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "coolify_environment_variable": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_envs_bulk": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_github_app": {
+                "fields": {
+                    "id": {
+                        "type": "string"
+                    }
+                }
+            },
+            "coolify_private_key": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_project": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_resource_action": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_scheduled_task": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_server": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_server_digitalocean": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_server_hetzner": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_server_validate": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_server_vultr": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_service": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_storage": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            },
+            "coolify_storage_backup": {
+                "computeID": {
+                    "kind": "missing"
+                }
+            }
+        }
+    }
+}
