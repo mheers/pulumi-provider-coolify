@@ -58,6 +58,12 @@ type LookupServerArgs struct {
 
 // A collection of values returned by getServer.
 type LookupServerResult struct {
+	// CPU percentage Coolify uses when compressing volume backups. Read-only. Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage int `pulumi:"backupCompressionCpuPercentage"`
+	// Docker Compose version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion string `pulumi:"composeVersion"`
+	// When Coolify last checked the Compose version on this server.
+	ComposeVersionCheckedAt string `pulumi:"composeVersionCheckedAt"`
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds int `pulumi:"concurrentBuilds"`
 	// SSH connection timeout in seconds.
@@ -66,6 +72,10 @@ type LookupServerResult struct {
 	DeploymentQueueLimit int `pulumi:"deploymentQueueLimit"`
 	// A description of the server.
 	Description string `pulumi:"description"`
+	// Docker engine version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion string `pulumi:"dockerVersion"`
+	// When Coolify last checked the Docker version on this server.
+	DockerVersionCheckedAt string `pulumi:"dockerVersionCheckedAt"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout int `pulumi:"dynamicTimeout"`
 	// The IP address of the server.
@@ -124,6 +134,21 @@ func (o LookupServerResultOutput) ToLookupServerResultOutputWithContext(ctx cont
 	return o
 }
 
+// CPU percentage Coolify uses when compressing volume backups. Read-only. Present on Coolify >= v4.3.3; empty on older instances.
+func (o LookupServerResultOutput) BackupCompressionCpuPercentage() pulumi.IntOutput {
+	return o.ApplyT(func(v LookupServerResult) int { return v.BackupCompressionCpuPercentage }).(pulumi.IntOutput)
+}
+
+// Docker Compose version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o LookupServerResultOutput) ComposeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.ComposeVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Compose version on this server.
+func (o LookupServerResultOutput) ComposeVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.ComposeVersionCheckedAt }).(pulumi.StringOutput)
+}
+
 // How many deployments can run in parallel on this server.
 func (o LookupServerResultOutput) ConcurrentBuilds() pulumi.IntOutput {
 	return o.ApplyT(func(v LookupServerResult) int { return v.ConcurrentBuilds }).(pulumi.IntOutput)
@@ -142,6 +167,16 @@ func (o LookupServerResultOutput) DeploymentQueueLimit() pulumi.IntOutput {
 // A description of the server.
 func (o LookupServerResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupServerResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Docker engine version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o LookupServerResultOutput) DockerVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.DockerVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Docker version on this server.
+func (o LookupServerResultOutput) DockerVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupServerResult) string { return v.DockerVersionCheckedAt }).(pulumi.StringOutput)
 }
 
 // Timeout in seconds for Docker operations (pull, build, health check) during deployment.

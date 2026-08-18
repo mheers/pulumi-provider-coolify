@@ -54,6 +54,10 @@ type Project struct {
 
 	// A description of the project.
 	Description pulumi.StringOutput `pulumi:"description"`
+	// Storage path of the project icon uploaded in the Coolify UI. Read-only; not on Project create/update allow list. Present on GET /projects/{uuid} on Coolify >= v4.3.3; omitted from the list endpoint and older instances.
+	IconPath pulumi.StringOutput `pulumi:"iconPath"`
+	// Icon storage backend (<span pulumi-lang-nodejs="`local`" pulumi-lang-dotnet="`Local`" pulumi-lang-go="`local`" pulumi-lang-python="`local`" pulumi-lang-yaml="`local`" pulumi-lang-java="`local`" pulumi-lang-hcl="`local`">`local`</span> or <span pulumi-lang-nodejs="`s3`" pulumi-lang-dotnet="`S3`" pulumi-lang-go="`s3`" pulumi-lang-python="`s3`" pulumi-lang-yaml="`s3`" pulumi-lang-java="`s3`" pulumi-lang-hcl="`s3`">`s3`</span>). Read-only. Present on GET /projects/{uuid} on Coolify >= v4.3.3.
+	IconStorageType pulumi.StringOutput `pulumi:"iconStorageType"`
 	// The name of the project.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The unique identifier of the project.
@@ -92,6 +96,10 @@ func GetProject(ctx *pulumi.Context,
 type projectState struct {
 	// A description of the project.
 	Description *string `pulumi:"description"`
+	// Storage path of the project icon uploaded in the Coolify UI. Read-only; not on Project create/update allow list. Present on GET /projects/{uuid} on Coolify >= v4.3.3; omitted from the list endpoint and older instances.
+	IconPath *string `pulumi:"iconPath"`
+	// Icon storage backend (<span pulumi-lang-nodejs="`local`" pulumi-lang-dotnet="`Local`" pulumi-lang-go="`local`" pulumi-lang-python="`local`" pulumi-lang-yaml="`local`" pulumi-lang-java="`local`" pulumi-lang-hcl="`local`">`local`</span> or <span pulumi-lang-nodejs="`s3`" pulumi-lang-dotnet="`S3`" pulumi-lang-go="`s3`" pulumi-lang-python="`s3`" pulumi-lang-yaml="`s3`" pulumi-lang-java="`s3`" pulumi-lang-hcl="`s3`">`s3`</span>). Read-only. Present on GET /projects/{uuid} on Coolify >= v4.3.3.
+	IconStorageType *string `pulumi:"iconStorageType"`
 	// The name of the project.
 	Name *string `pulumi:"name"`
 	// The unique identifier of the project.
@@ -101,6 +109,10 @@ type projectState struct {
 type ProjectState struct {
 	// A description of the project.
 	Description pulumi.StringPtrInput
+	// Storage path of the project icon uploaded in the Coolify UI. Read-only; not on Project create/update allow list. Present on GET /projects/{uuid} on Coolify >= v4.3.3; omitted from the list endpoint and older instances.
+	IconPath pulumi.StringPtrInput
+	// Icon storage backend (<span pulumi-lang-nodejs="`local`" pulumi-lang-dotnet="`Local`" pulumi-lang-go="`local`" pulumi-lang-python="`local`" pulumi-lang-yaml="`local`" pulumi-lang-java="`local`" pulumi-lang-hcl="`local`">`local`</span> or <span pulumi-lang-nodejs="`s3`" pulumi-lang-dotnet="`S3`" pulumi-lang-go="`s3`" pulumi-lang-python="`s3`" pulumi-lang-yaml="`s3`" pulumi-lang-java="`s3`" pulumi-lang-hcl="`s3`">`s3`</span>). Read-only. Present on GET /projects/{uuid} on Coolify >= v4.3.3.
+	IconStorageType pulumi.StringPtrInput
 	// The name of the project.
 	Name pulumi.StringPtrInput
 	// The unique identifier of the project.
@@ -216,6 +228,16 @@ func (o ProjectOutput) ToProjectOutputWithContext(ctx context.Context) ProjectOu
 // A description of the project.
 func (o ProjectOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
+}
+
+// Storage path of the project icon uploaded in the Coolify UI. Read-only; not on Project create/update allow list. Present on GET /projects/{uuid} on Coolify >= v4.3.3; omitted from the list endpoint and older instances.
+func (o ProjectOutput) IconPath() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.IconPath }).(pulumi.StringOutput)
+}
+
+// Icon storage backend (<span pulumi-lang-nodejs="`local`" pulumi-lang-dotnet="`Local`" pulumi-lang-go="`local`" pulumi-lang-python="`local`" pulumi-lang-yaml="`local`" pulumi-lang-java="`local`" pulumi-lang-hcl="`local`">`local`</span> or <span pulumi-lang-nodejs="`s3`" pulumi-lang-dotnet="`S3`" pulumi-lang-go="`s3`" pulumi-lang-python="`s3`" pulumi-lang-yaml="`s3`" pulumi-lang-java="`s3`" pulumi-lang-hcl="`s3`">`s3`</span>). Read-only. Present on GET /projects/{uuid} on Coolify >= v4.3.3.
+func (o ProjectOutput) IconStorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v *Project) pulumi.StringOutput { return v.IconStorageType }).(pulumi.StringOutput)
 }
 
 // The name of the project.

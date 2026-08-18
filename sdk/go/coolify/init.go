@@ -25,6 +25,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApiSettings{}
 	case "coolify:index/application:Application":
 		r = &Application{}
+	case "coolify:index/applicationDestination:ApplicationDestination":
+		r = &ApplicationDestination{}
 	case "coolify:index/applicationDockerImage:ApplicationDockerImage":
 		r = &ApplicationDockerImage{}
 	case "coolify:index/applicationDockerfile:ApplicationDockerfile":
@@ -37,6 +39,8 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &ApplicationPrivateGit{}
 	case "coolify:index/backupExecution:BackupExecution":
 		r = &BackupExecution{}
+	case "coolify:index/cloudInitScript:CloudInitScript":
+		r = &CloudInitScript{}
 	case "coolify:index/cloudToken:CloudToken":
 		r = &CloudToken{}
 	case "coolify:index/cloudTokenValidate:CloudTokenValidate":
@@ -71,30 +75,64 @@ func (m *module) Construct(ctx *pulumi.Context, name, typ, urn string) (r pulumi
 		r = &EnvsBulk{}
 	case "coolify:index/githubApp:GithubApp":
 		r = &GithubApp{}
+	case "coolify:index/gitlabApp:GitlabApp":
+		r = &GitlabApp{}
+	case "coolify:index/notificationDiscord:NotificationDiscord":
+		r = &NotificationDiscord{}
+	case "coolify:index/notificationEmail:NotificationEmail":
+		r = &NotificationEmail{}
+	case "coolify:index/notificationPushover:NotificationPushover":
+		r = &NotificationPushover{}
+	case "coolify:index/notificationSlack:NotificationSlack":
+		r = &NotificationSlack{}
+	case "coolify:index/notificationTelegram:NotificationTelegram":
+		r = &NotificationTelegram{}
+	case "coolify:index/notificationWebhook:NotificationWebhook":
+		r = &NotificationWebhook{}
 	case "coolify:index/privateKey:PrivateKey":
 		r = &PrivateKey{}
 	case "coolify:index/project:Project":
 		r = &Project{}
 	case "coolify:index/resourceAction:ResourceAction":
 		r = &ResourceAction{}
+	case "coolify:index/resourceTag:ResourceTag":
+		r = &ResourceTag{}
+	case "coolify:index/s3Storage:S3Storage":
+		r = &S3Storage{}
+	case "coolify:index/s3StorageValidate:S3StorageValidate":
+		r = &S3StorageValidate{}
 	case "coolify:index/scheduledTask:ScheduledTask":
 		r = &ScheduledTask{}
 	case "coolify:index/server:Server":
 		r = &Server{}
+	case "coolify:index/serverCloudflareTunnel:ServerCloudflareTunnel":
+		r = &ServerCloudflareTunnel{}
 	case "coolify:index/serverDigitalocean:ServerDigitalocean":
 		r = &ServerDigitalocean{}
+	case "coolify:index/serverDockerCleanup:ServerDockerCleanup":
+		r = &ServerDockerCleanup{}
 	case "coolify:index/serverHetzner:ServerHetzner":
 		r = &ServerHetzner{}
+	case "coolify:index/serverLogDrain:ServerLogDrain":
+		r = &ServerLogDrain{}
+	case "coolify:index/serverProxy:ServerProxy":
+		r = &ServerProxy{}
+	case "coolify:index/serverSentinel:ServerSentinel":
+		r = &ServerSentinel{}
 	case "coolify:index/serverValidate:ServerValidate":
 		r = &ServerValidate{}
 	case "coolify:index/serverVultr:ServerVultr":
 		r = &ServerVultr{}
 	case "coolify:index/service:Service":
 		r = &Service{}
+	case "coolify:index/sharedEnvironmentVariable:SharedEnvironmentVariable":
+		r = &SharedEnvironmentVariable{}
 	case "coolify:index/storage:Storage":
 		r = &Storage{}
 	case "coolify:index/storageBackup:StorageBackup":
 		r = &StorageBackup{}
+	case "coolify:index/tag:Tag":
+		r = &Tag{}
 	default:
 		return nil, fmt.Errorf("unknown resource type: %s", typ)
 	}
@@ -138,6 +176,11 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"coolify",
+		"index/applicationDestination",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
 		"index/applicationDockerImage",
 		&module{version},
 	)
@@ -164,6 +207,11 @@ func init() {
 	pulumi.RegisterResourceModule(
 		"coolify",
 		"index/backupExecution",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/cloudInitScript",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -253,6 +301,41 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"coolify",
+		"index/gitlabApp",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/notificationDiscord",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/notificationEmail",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/notificationPushover",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/notificationSlack",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/notificationTelegram",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/notificationWebhook",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
 		"index/privateKey",
 		&module{version},
 	)
@@ -268,6 +351,21 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"coolify",
+		"index/resourceTag",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/s3Storage",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/s3StorageValidate",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
 		"index/scheduledTask",
 		&module{version},
 	)
@@ -278,12 +376,37 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"coolify",
+		"index/serverCloudflareTunnel",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
 		"index/serverDigitalocean",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"coolify",
+		"index/serverDockerCleanup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
 		"index/serverHetzner",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/serverLogDrain",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/serverProxy",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/serverSentinel",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
@@ -303,12 +426,22 @@ func init() {
 	)
 	pulumi.RegisterResourceModule(
 		"coolify",
+		"index/sharedEnvironmentVariable",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
 		"index/storage",
 		&module{version},
 	)
 	pulumi.RegisterResourceModule(
 		"coolify",
 		"index/storageBackup",
+		&module{version},
+	)
+	pulumi.RegisterResourceModule(
+		"coolify",
+		"index/tag",
 		&module{version},
 	)
 	pulumi.RegisterResourcePackage(

@@ -56,9 +56,9 @@ import (
 type Environment struct {
 	pulumi.CustomResourceState
 
-	// A description of the environment. Note: the Coolify API does not support updating this field after creation; changes are stored in Terraform state only.
+	// A description of the environment. Sent on PATCH after create (Coolify create rejects description) and on subsequent updates. Requires Coolify >= v4.3.0; omit on older instances or create fails with a 404 on the PATCH.
 	Description pulumi.StringOutput `pulumi:"description"`
-	// The name of the environment. Changing this forces a new resource.
+	// The name of the environment. Coolify accepts in-place rename via PATCH.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// The UUID of the project this environment belongs to. Changing this forces a new resource.
 	ProjectUuid pulumi.StringOutput `pulumi:"projectUuid"`
@@ -97,18 +97,18 @@ func GetEnvironment(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Environment resources.
 type environmentState struct {
-	// A description of the environment. Note: the Coolify API does not support updating this field after creation; changes are stored in Terraform state only.
+	// A description of the environment. Sent on PATCH after create (Coolify create rejects description) and on subsequent updates. Requires Coolify >= v4.3.0; omit on older instances or create fails with a 404 on the PATCH.
 	Description *string `pulumi:"description"`
-	// The name of the environment. Changing this forces a new resource.
+	// The name of the environment. Coolify accepts in-place rename via PATCH.
 	Name *string `pulumi:"name"`
 	// The UUID of the project this environment belongs to. Changing this forces a new resource.
 	ProjectUuid *string `pulumi:"projectUuid"`
 }
 
 type EnvironmentState struct {
-	// A description of the environment. Note: the Coolify API does not support updating this field after creation; changes are stored in Terraform state only.
+	// A description of the environment. Sent on PATCH after create (Coolify create rejects description) and on subsequent updates. Requires Coolify >= v4.3.0; omit on older instances or create fails with a 404 on the PATCH.
 	Description pulumi.StringPtrInput
-	// The name of the environment. Changing this forces a new resource.
+	// The name of the environment. Coolify accepts in-place rename via PATCH.
 	Name pulumi.StringPtrInput
 	// The UUID of the project this environment belongs to. Changing this forces a new resource.
 	ProjectUuid pulumi.StringPtrInput
@@ -119,9 +119,9 @@ func (EnvironmentState) ElementType() reflect.Type {
 }
 
 type environmentArgs struct {
-	// A description of the environment. Note: the Coolify API does not support updating this field after creation; changes are stored in Terraform state only.
+	// A description of the environment. Sent on PATCH after create (Coolify create rejects description) and on subsequent updates. Requires Coolify >= v4.3.0; omit on older instances or create fails with a 404 on the PATCH.
 	Description *string `pulumi:"description"`
-	// The name of the environment. Changing this forces a new resource.
+	// The name of the environment. Coolify accepts in-place rename via PATCH.
 	Name *string `pulumi:"name"`
 	// The UUID of the project this environment belongs to. Changing this forces a new resource.
 	ProjectUuid string `pulumi:"projectUuid"`
@@ -129,9 +129,9 @@ type environmentArgs struct {
 
 // The set of arguments for constructing a Environment resource.
 type EnvironmentArgs struct {
-	// A description of the environment. Note: the Coolify API does not support updating this field after creation; changes are stored in Terraform state only.
+	// A description of the environment. Sent on PATCH after create (Coolify create rejects description) and on subsequent updates. Requires Coolify >= v4.3.0; omit on older instances or create fails with a 404 on the PATCH.
 	Description pulumi.StringPtrInput
-	// The name of the environment. Changing this forces a new resource.
+	// The name of the environment. Coolify accepts in-place rename via PATCH.
 	Name pulumi.StringPtrInput
 	// The UUID of the project this environment belongs to. Changing this forces a new resource.
 	ProjectUuid pulumi.StringInput
@@ -224,12 +224,12 @@ func (o EnvironmentOutput) ToEnvironmentOutputWithContext(ctx context.Context) E
 	return o
 }
 
-// A description of the environment. Note: the Coolify API does not support updating this field after creation; changes are stored in Terraform state only.
+// A description of the environment. Sent on PATCH after create (Coolify create rejects description) and on subsequent updates. Requires Coolify >= v4.3.0; omit on older instances or create fails with a 404 on the PATCH.
 func (o EnvironmentOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.Description }).(pulumi.StringOutput)
 }
 
-// The name of the environment. Changing this forces a new resource.
+// The name of the environment. Coolify accepts in-place rename via PATCH.
 func (o EnvironmentOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Environment) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

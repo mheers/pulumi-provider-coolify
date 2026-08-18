@@ -6582,6 +6582,384 @@ func (o GetGithubAppsGithubAppArrayOutput) Index(i pulumi.IntInput) GetGithubApp
 	}).(GetGithubAppsGithubAppOutput)
 }
 
+type GetGitlabAppsApp struct {
+	ApiUrl       string `pulumi:"apiUrl"`
+	ClientId     string `pulumi:"clientId"`
+	ClientSecret string `pulumi:"clientSecret"`
+	CustomPort   int    `pulumi:"customPort"`
+	CustomUser   string `pulumi:"customUser"`
+	GroupName    string `pulumi:"groupName"`
+	HtmlUrl      string `pulumi:"htmlUrl"`
+	Id           int    `pulumi:"id"`
+	IsSystemWide bool   `pulumi:"isSystemWide"`
+	Name         string `pulumi:"name"`
+	RedirectUri  string `pulumi:"redirectUri"`
+	Uuid         string `pulumi:"uuid"`
+	WebhookToken string `pulumi:"webhookToken"`
+}
+
+// GetGitlabAppsAppInput is an input type that accepts GetGitlabAppsAppArgs and GetGitlabAppsAppOutput values.
+// You can construct a concrete instance of `GetGitlabAppsAppInput` via:
+//
+//	GetGitlabAppsAppArgs{...}
+type GetGitlabAppsAppInput interface {
+	pulumi.Input
+
+	ToGetGitlabAppsAppOutput() GetGitlabAppsAppOutput
+	ToGetGitlabAppsAppOutputWithContext(context.Context) GetGitlabAppsAppOutput
+}
+
+type GetGitlabAppsAppArgs struct {
+	ApiUrl       pulumi.StringInput `pulumi:"apiUrl"`
+	ClientId     pulumi.StringInput `pulumi:"clientId"`
+	ClientSecret pulumi.StringInput `pulumi:"clientSecret"`
+	CustomPort   pulumi.IntInput    `pulumi:"customPort"`
+	CustomUser   pulumi.StringInput `pulumi:"customUser"`
+	GroupName    pulumi.StringInput `pulumi:"groupName"`
+	HtmlUrl      pulumi.StringInput `pulumi:"htmlUrl"`
+	Id           pulumi.IntInput    `pulumi:"id"`
+	IsSystemWide pulumi.BoolInput   `pulumi:"isSystemWide"`
+	Name         pulumi.StringInput `pulumi:"name"`
+	RedirectUri  pulumi.StringInput `pulumi:"redirectUri"`
+	Uuid         pulumi.StringInput `pulumi:"uuid"`
+	WebhookToken pulumi.StringInput `pulumi:"webhookToken"`
+}
+
+func (GetGitlabAppsAppArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGitlabAppsApp)(nil)).Elem()
+}
+
+func (i GetGitlabAppsAppArgs) ToGetGitlabAppsAppOutput() GetGitlabAppsAppOutput {
+	return i.ToGetGitlabAppsAppOutputWithContext(context.Background())
+}
+
+func (i GetGitlabAppsAppArgs) ToGetGitlabAppsAppOutputWithContext(ctx context.Context) GetGitlabAppsAppOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGitlabAppsAppOutput)
+}
+
+// GetGitlabAppsAppArrayInput is an input type that accepts GetGitlabAppsAppArray and GetGitlabAppsAppArrayOutput values.
+// You can construct a concrete instance of `GetGitlabAppsAppArrayInput` via:
+//
+//	GetGitlabAppsAppArray{ GetGitlabAppsAppArgs{...} }
+type GetGitlabAppsAppArrayInput interface {
+	pulumi.Input
+
+	ToGetGitlabAppsAppArrayOutput() GetGitlabAppsAppArrayOutput
+	ToGetGitlabAppsAppArrayOutputWithContext(context.Context) GetGitlabAppsAppArrayOutput
+}
+
+type GetGitlabAppsAppArray []GetGitlabAppsAppInput
+
+func (GetGitlabAppsAppArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGitlabAppsApp)(nil)).Elem()
+}
+
+func (i GetGitlabAppsAppArray) ToGetGitlabAppsAppArrayOutput() GetGitlabAppsAppArrayOutput {
+	return i.ToGetGitlabAppsAppArrayOutputWithContext(context.Background())
+}
+
+func (i GetGitlabAppsAppArray) ToGetGitlabAppsAppArrayOutputWithContext(ctx context.Context) GetGitlabAppsAppArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetGitlabAppsAppArrayOutput)
+}
+
+type GetGitlabAppsAppOutput struct{ *pulumi.OutputState }
+
+func (GetGitlabAppsAppOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetGitlabAppsApp)(nil)).Elem()
+}
+
+func (o GetGitlabAppsAppOutput) ToGetGitlabAppsAppOutput() GetGitlabAppsAppOutput {
+	return o
+}
+
+func (o GetGitlabAppsAppOutput) ToGetGitlabAppsAppOutputWithContext(ctx context.Context) GetGitlabAppsAppOutput {
+	return o
+}
+
+func (o GetGitlabAppsAppOutput) ApiUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.ApiUrl }).(pulumi.StringOutput)
+}
+
+func (o GetGitlabAppsAppOutput) ClientId() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.ClientId }).(pulumi.StringOutput)
+}
+
+func (o GetGitlabAppsAppOutput) ClientSecret() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.ClientSecret }).(pulumi.StringOutput)
+}
+
+func (o GetGitlabAppsAppOutput) CustomPort() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) int { return v.CustomPort }).(pulumi.IntOutput)
+}
+
+func (o GetGitlabAppsAppOutput) CustomUser() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.CustomUser }).(pulumi.StringOutput)
+}
+
+func (o GetGitlabAppsAppOutput) GroupName() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.GroupName }).(pulumi.StringOutput)
+}
+
+func (o GetGitlabAppsAppOutput) HtmlUrl() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.HtmlUrl }).(pulumi.StringOutput)
+}
+
+func (o GetGitlabAppsAppOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) int { return v.Id }).(pulumi.IntOutput)
+}
+
+func (o GetGitlabAppsAppOutput) IsSystemWide() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) bool { return v.IsSystemWide }).(pulumi.BoolOutput)
+}
+
+func (o GetGitlabAppsAppOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetGitlabAppsAppOutput) RedirectUri() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.RedirectUri }).(pulumi.StringOutput)
+}
+
+func (o GetGitlabAppsAppOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+func (o GetGitlabAppsAppOutput) WebhookToken() pulumi.StringOutput {
+	return o.ApplyT(func(v GetGitlabAppsApp) string { return v.WebhookToken }).(pulumi.StringOutput)
+}
+
+type GetGitlabAppsAppArrayOutput struct{ *pulumi.OutputState }
+
+func (GetGitlabAppsAppArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetGitlabAppsApp)(nil)).Elem()
+}
+
+func (o GetGitlabAppsAppArrayOutput) ToGetGitlabAppsAppArrayOutput() GetGitlabAppsAppArrayOutput {
+	return o
+}
+
+func (o GetGitlabAppsAppArrayOutput) ToGetGitlabAppsAppArrayOutputWithContext(ctx context.Context) GetGitlabAppsAppArrayOutput {
+	return o
+}
+
+func (o GetGitlabAppsAppArrayOutput) Index(i pulumi.IntInput) GetGitlabAppsAppOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetGitlabAppsApp {
+		return vs[0].([]GetGitlabAppsApp)[vs[1].(int)]
+	}).(GetGitlabAppsAppOutput)
+}
+
+type GetHetznerFirewallsFilter struct {
+	// The field name to filter by.
+	Name string `pulumi:"name"`
+	// The values to match against. Multiple values are ORed.
+	Values []string `pulumi:"values"`
+}
+
+// GetHetznerFirewallsFilterInput is an input type that accepts GetHetznerFirewallsFilterArgs and GetHetznerFirewallsFilterOutput values.
+// You can construct a concrete instance of `GetHetznerFirewallsFilterInput` via:
+//
+//	GetHetznerFirewallsFilterArgs{...}
+type GetHetznerFirewallsFilterInput interface {
+	pulumi.Input
+
+	ToGetHetznerFirewallsFilterOutput() GetHetznerFirewallsFilterOutput
+	ToGetHetznerFirewallsFilterOutputWithContext(context.Context) GetHetznerFirewallsFilterOutput
+}
+
+type GetHetznerFirewallsFilterArgs struct {
+	// The field name to filter by.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The values to match against. Multiple values are ORed.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetHetznerFirewallsFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHetznerFirewallsFilter)(nil)).Elem()
+}
+
+func (i GetHetznerFirewallsFilterArgs) ToGetHetznerFirewallsFilterOutput() GetHetznerFirewallsFilterOutput {
+	return i.ToGetHetznerFirewallsFilterOutputWithContext(context.Background())
+}
+
+func (i GetHetznerFirewallsFilterArgs) ToGetHetznerFirewallsFilterOutputWithContext(ctx context.Context) GetHetznerFirewallsFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHetznerFirewallsFilterOutput)
+}
+
+// GetHetznerFirewallsFilterArrayInput is an input type that accepts GetHetznerFirewallsFilterArray and GetHetznerFirewallsFilterArrayOutput values.
+// You can construct a concrete instance of `GetHetznerFirewallsFilterArrayInput` via:
+//
+//	GetHetznerFirewallsFilterArray{ GetHetznerFirewallsFilterArgs{...} }
+type GetHetznerFirewallsFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetHetznerFirewallsFilterArrayOutput() GetHetznerFirewallsFilterArrayOutput
+	ToGetHetznerFirewallsFilterArrayOutputWithContext(context.Context) GetHetznerFirewallsFilterArrayOutput
+}
+
+type GetHetznerFirewallsFilterArray []GetHetznerFirewallsFilterInput
+
+func (GetHetznerFirewallsFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHetznerFirewallsFilter)(nil)).Elem()
+}
+
+func (i GetHetznerFirewallsFilterArray) ToGetHetznerFirewallsFilterArrayOutput() GetHetznerFirewallsFilterArrayOutput {
+	return i.ToGetHetznerFirewallsFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetHetznerFirewallsFilterArray) ToGetHetznerFirewallsFilterArrayOutputWithContext(ctx context.Context) GetHetznerFirewallsFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHetznerFirewallsFilterArrayOutput)
+}
+
+type GetHetznerFirewallsFilterOutput struct{ *pulumi.OutputState }
+
+func (GetHetznerFirewallsFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHetznerFirewallsFilter)(nil)).Elem()
+}
+
+func (o GetHetznerFirewallsFilterOutput) ToGetHetznerFirewallsFilterOutput() GetHetznerFirewallsFilterOutput {
+	return o
+}
+
+func (o GetHetznerFirewallsFilterOutput) ToGetHetznerFirewallsFilterOutputWithContext(ctx context.Context) GetHetznerFirewallsFilterOutput {
+	return o
+}
+
+// The field name to filter by.
+func (o GetHetznerFirewallsFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHetznerFirewallsFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The values to match against. Multiple values are ORed.
+func (o GetHetznerFirewallsFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetHetznerFirewallsFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetHetznerFirewallsFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHetznerFirewallsFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHetznerFirewallsFilter)(nil)).Elem()
+}
+
+func (o GetHetznerFirewallsFilterArrayOutput) ToGetHetznerFirewallsFilterArrayOutput() GetHetznerFirewallsFilterArrayOutput {
+	return o
+}
+
+func (o GetHetznerFirewallsFilterArrayOutput) ToGetHetznerFirewallsFilterArrayOutputWithContext(ctx context.Context) GetHetznerFirewallsFilterArrayOutput {
+	return o
+}
+
+func (o GetHetznerFirewallsFilterArrayOutput) Index(i pulumi.IntInput) GetHetznerFirewallsFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHetznerFirewallsFilter {
+		return vs[0].([]GetHetznerFirewallsFilter)[vs[1].(int)]
+	}).(GetHetznerFirewallsFilterOutput)
+}
+
+type GetHetznerFirewallsFirewall struct {
+	// The numeric Hetzner firewall ID.
+	Id int `pulumi:"id"`
+	// The name of the firewall.
+	Name string `pulumi:"name"`
+}
+
+// GetHetznerFirewallsFirewallInput is an input type that accepts GetHetznerFirewallsFirewallArgs and GetHetznerFirewallsFirewallOutput values.
+// You can construct a concrete instance of `GetHetznerFirewallsFirewallInput` via:
+//
+//	GetHetznerFirewallsFirewallArgs{...}
+type GetHetznerFirewallsFirewallInput interface {
+	pulumi.Input
+
+	ToGetHetznerFirewallsFirewallOutput() GetHetznerFirewallsFirewallOutput
+	ToGetHetznerFirewallsFirewallOutputWithContext(context.Context) GetHetznerFirewallsFirewallOutput
+}
+
+type GetHetznerFirewallsFirewallArgs struct {
+	// The numeric Hetzner firewall ID.
+	Id pulumi.IntInput `pulumi:"id"`
+	// The name of the firewall.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetHetznerFirewallsFirewallArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHetznerFirewallsFirewall)(nil)).Elem()
+}
+
+func (i GetHetznerFirewallsFirewallArgs) ToGetHetznerFirewallsFirewallOutput() GetHetznerFirewallsFirewallOutput {
+	return i.ToGetHetznerFirewallsFirewallOutputWithContext(context.Background())
+}
+
+func (i GetHetznerFirewallsFirewallArgs) ToGetHetznerFirewallsFirewallOutputWithContext(ctx context.Context) GetHetznerFirewallsFirewallOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHetznerFirewallsFirewallOutput)
+}
+
+// GetHetznerFirewallsFirewallArrayInput is an input type that accepts GetHetznerFirewallsFirewallArray and GetHetznerFirewallsFirewallArrayOutput values.
+// You can construct a concrete instance of `GetHetznerFirewallsFirewallArrayInput` via:
+//
+//	GetHetznerFirewallsFirewallArray{ GetHetznerFirewallsFirewallArgs{...} }
+type GetHetznerFirewallsFirewallArrayInput interface {
+	pulumi.Input
+
+	ToGetHetznerFirewallsFirewallArrayOutput() GetHetznerFirewallsFirewallArrayOutput
+	ToGetHetznerFirewallsFirewallArrayOutputWithContext(context.Context) GetHetznerFirewallsFirewallArrayOutput
+}
+
+type GetHetznerFirewallsFirewallArray []GetHetznerFirewallsFirewallInput
+
+func (GetHetznerFirewallsFirewallArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHetznerFirewallsFirewall)(nil)).Elem()
+}
+
+func (i GetHetznerFirewallsFirewallArray) ToGetHetznerFirewallsFirewallArrayOutput() GetHetznerFirewallsFirewallArrayOutput {
+	return i.ToGetHetznerFirewallsFirewallArrayOutputWithContext(context.Background())
+}
+
+func (i GetHetznerFirewallsFirewallArray) ToGetHetznerFirewallsFirewallArrayOutputWithContext(ctx context.Context) GetHetznerFirewallsFirewallArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHetznerFirewallsFirewallArrayOutput)
+}
+
+type GetHetznerFirewallsFirewallOutput struct{ *pulumi.OutputState }
+
+func (GetHetznerFirewallsFirewallOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHetznerFirewallsFirewall)(nil)).Elem()
+}
+
+func (o GetHetznerFirewallsFirewallOutput) ToGetHetznerFirewallsFirewallOutput() GetHetznerFirewallsFirewallOutput {
+	return o
+}
+
+func (o GetHetznerFirewallsFirewallOutput) ToGetHetznerFirewallsFirewallOutputWithContext(ctx context.Context) GetHetznerFirewallsFirewallOutput {
+	return o
+}
+
+// The numeric Hetzner firewall ID.
+func (o GetHetznerFirewallsFirewallOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetHetznerFirewallsFirewall) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The name of the firewall.
+func (o GetHetznerFirewallsFirewallOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHetznerFirewallsFirewall) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetHetznerFirewallsFirewallArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHetznerFirewallsFirewallArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHetznerFirewallsFirewall)(nil)).Elem()
+}
+
+func (o GetHetznerFirewallsFirewallArrayOutput) ToGetHetznerFirewallsFirewallArrayOutput() GetHetznerFirewallsFirewallArrayOutput {
+	return o
+}
+
+func (o GetHetznerFirewallsFirewallArrayOutput) ToGetHetznerFirewallsFirewallArrayOutputWithContext(ctx context.Context) GetHetznerFirewallsFirewallArrayOutput {
+	return o
+}
+
+func (o GetHetznerFirewallsFirewallArrayOutput) Index(i pulumi.IntInput) GetHetznerFirewallsFirewallOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHetznerFirewallsFirewall {
+		return vs[0].([]GetHetznerFirewallsFirewall)[vs[1].(int)]
+	}).(GetHetznerFirewallsFirewallOutput)
+}
+
 type GetHetznerImagesFilter struct {
 	// The field name to filter by.
 	Name string `pulumi:"name"`
@@ -7040,6 +7418,227 @@ func (o GetHetznerLocationsLocationArrayOutput) Index(i pulumi.IntInput) GetHetz
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHetznerLocationsLocation {
 		return vs[0].([]GetHetznerLocationsLocation)[vs[1].(int)]
 	}).(GetHetznerLocationsLocationOutput)
+}
+
+type GetHetznerNetworksFilter struct {
+	// The field name to filter by.
+	Name string `pulumi:"name"`
+	// The values to match against. Multiple values are ORed.
+	Values []string `pulumi:"values"`
+}
+
+// GetHetznerNetworksFilterInput is an input type that accepts GetHetznerNetworksFilterArgs and GetHetznerNetworksFilterOutput values.
+// You can construct a concrete instance of `GetHetznerNetworksFilterInput` via:
+//
+//	GetHetznerNetworksFilterArgs{...}
+type GetHetznerNetworksFilterInput interface {
+	pulumi.Input
+
+	ToGetHetznerNetworksFilterOutput() GetHetznerNetworksFilterOutput
+	ToGetHetznerNetworksFilterOutputWithContext(context.Context) GetHetznerNetworksFilterOutput
+}
+
+type GetHetznerNetworksFilterArgs struct {
+	// The field name to filter by.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The values to match against. Multiple values are ORed.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetHetznerNetworksFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHetznerNetworksFilter)(nil)).Elem()
+}
+
+func (i GetHetznerNetworksFilterArgs) ToGetHetznerNetworksFilterOutput() GetHetznerNetworksFilterOutput {
+	return i.ToGetHetznerNetworksFilterOutputWithContext(context.Background())
+}
+
+func (i GetHetznerNetworksFilterArgs) ToGetHetznerNetworksFilterOutputWithContext(ctx context.Context) GetHetznerNetworksFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHetznerNetworksFilterOutput)
+}
+
+// GetHetznerNetworksFilterArrayInput is an input type that accepts GetHetznerNetworksFilterArray and GetHetznerNetworksFilterArrayOutput values.
+// You can construct a concrete instance of `GetHetznerNetworksFilterArrayInput` via:
+//
+//	GetHetznerNetworksFilterArray{ GetHetznerNetworksFilterArgs{...} }
+type GetHetznerNetworksFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetHetznerNetworksFilterArrayOutput() GetHetznerNetworksFilterArrayOutput
+	ToGetHetznerNetworksFilterArrayOutputWithContext(context.Context) GetHetznerNetworksFilterArrayOutput
+}
+
+type GetHetznerNetworksFilterArray []GetHetznerNetworksFilterInput
+
+func (GetHetznerNetworksFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHetznerNetworksFilter)(nil)).Elem()
+}
+
+func (i GetHetznerNetworksFilterArray) ToGetHetznerNetworksFilterArrayOutput() GetHetznerNetworksFilterArrayOutput {
+	return i.ToGetHetznerNetworksFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetHetznerNetworksFilterArray) ToGetHetznerNetworksFilterArrayOutputWithContext(ctx context.Context) GetHetznerNetworksFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHetznerNetworksFilterArrayOutput)
+}
+
+type GetHetznerNetworksFilterOutput struct{ *pulumi.OutputState }
+
+func (GetHetznerNetworksFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHetznerNetworksFilter)(nil)).Elem()
+}
+
+func (o GetHetznerNetworksFilterOutput) ToGetHetznerNetworksFilterOutput() GetHetznerNetworksFilterOutput {
+	return o
+}
+
+func (o GetHetznerNetworksFilterOutput) ToGetHetznerNetworksFilterOutputWithContext(ctx context.Context) GetHetznerNetworksFilterOutput {
+	return o
+}
+
+// The field name to filter by.
+func (o GetHetznerNetworksFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHetznerNetworksFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The values to match against. Multiple values are ORed.
+func (o GetHetznerNetworksFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetHetznerNetworksFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetHetznerNetworksFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHetznerNetworksFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHetznerNetworksFilter)(nil)).Elem()
+}
+
+func (o GetHetznerNetworksFilterArrayOutput) ToGetHetznerNetworksFilterArrayOutput() GetHetznerNetworksFilterArrayOutput {
+	return o
+}
+
+func (o GetHetznerNetworksFilterArrayOutput) ToGetHetznerNetworksFilterArrayOutputWithContext(ctx context.Context) GetHetznerNetworksFilterArrayOutput {
+	return o
+}
+
+func (o GetHetznerNetworksFilterArrayOutput) Index(i pulumi.IntInput) GetHetznerNetworksFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHetznerNetworksFilter {
+		return vs[0].([]GetHetznerNetworksFilter)[vs[1].(int)]
+	}).(GetHetznerNetworksFilterOutput)
+}
+
+type GetHetznerNetworksNetwork struct {
+	// The numeric Hetzner network ID.
+	Id int `pulumi:"id"`
+	// The IPv4 range of the network (CIDR).
+	IpRange string `pulumi:"ipRange"`
+	// The name of the network.
+	Name string `pulumi:"name"`
+}
+
+// GetHetznerNetworksNetworkInput is an input type that accepts GetHetznerNetworksNetworkArgs and GetHetznerNetworksNetworkOutput values.
+// You can construct a concrete instance of `GetHetznerNetworksNetworkInput` via:
+//
+//	GetHetznerNetworksNetworkArgs{...}
+type GetHetznerNetworksNetworkInput interface {
+	pulumi.Input
+
+	ToGetHetznerNetworksNetworkOutput() GetHetznerNetworksNetworkOutput
+	ToGetHetznerNetworksNetworkOutputWithContext(context.Context) GetHetznerNetworksNetworkOutput
+}
+
+type GetHetznerNetworksNetworkArgs struct {
+	// The numeric Hetzner network ID.
+	Id pulumi.IntInput `pulumi:"id"`
+	// The IPv4 range of the network (CIDR).
+	IpRange pulumi.StringInput `pulumi:"ipRange"`
+	// The name of the network.
+	Name pulumi.StringInput `pulumi:"name"`
+}
+
+func (GetHetznerNetworksNetworkArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHetznerNetworksNetwork)(nil)).Elem()
+}
+
+func (i GetHetznerNetworksNetworkArgs) ToGetHetznerNetworksNetworkOutput() GetHetznerNetworksNetworkOutput {
+	return i.ToGetHetznerNetworksNetworkOutputWithContext(context.Background())
+}
+
+func (i GetHetznerNetworksNetworkArgs) ToGetHetznerNetworksNetworkOutputWithContext(ctx context.Context) GetHetznerNetworksNetworkOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHetznerNetworksNetworkOutput)
+}
+
+// GetHetznerNetworksNetworkArrayInput is an input type that accepts GetHetznerNetworksNetworkArray and GetHetznerNetworksNetworkArrayOutput values.
+// You can construct a concrete instance of `GetHetznerNetworksNetworkArrayInput` via:
+//
+//	GetHetznerNetworksNetworkArray{ GetHetznerNetworksNetworkArgs{...} }
+type GetHetznerNetworksNetworkArrayInput interface {
+	pulumi.Input
+
+	ToGetHetznerNetworksNetworkArrayOutput() GetHetznerNetworksNetworkArrayOutput
+	ToGetHetznerNetworksNetworkArrayOutputWithContext(context.Context) GetHetznerNetworksNetworkArrayOutput
+}
+
+type GetHetznerNetworksNetworkArray []GetHetznerNetworksNetworkInput
+
+func (GetHetznerNetworksNetworkArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHetznerNetworksNetwork)(nil)).Elem()
+}
+
+func (i GetHetznerNetworksNetworkArray) ToGetHetznerNetworksNetworkArrayOutput() GetHetznerNetworksNetworkArrayOutput {
+	return i.ToGetHetznerNetworksNetworkArrayOutputWithContext(context.Background())
+}
+
+func (i GetHetznerNetworksNetworkArray) ToGetHetznerNetworksNetworkArrayOutputWithContext(ctx context.Context) GetHetznerNetworksNetworkArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetHetznerNetworksNetworkArrayOutput)
+}
+
+type GetHetznerNetworksNetworkOutput struct{ *pulumi.OutputState }
+
+func (GetHetznerNetworksNetworkOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetHetznerNetworksNetwork)(nil)).Elem()
+}
+
+func (o GetHetznerNetworksNetworkOutput) ToGetHetznerNetworksNetworkOutput() GetHetznerNetworksNetworkOutput {
+	return o
+}
+
+func (o GetHetznerNetworksNetworkOutput) ToGetHetznerNetworksNetworkOutputWithContext(ctx context.Context) GetHetznerNetworksNetworkOutput {
+	return o
+}
+
+// The numeric Hetzner network ID.
+func (o GetHetznerNetworksNetworkOutput) Id() pulumi.IntOutput {
+	return o.ApplyT(func(v GetHetznerNetworksNetwork) int { return v.Id }).(pulumi.IntOutput)
+}
+
+// The IPv4 range of the network (CIDR).
+func (o GetHetznerNetworksNetworkOutput) IpRange() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHetznerNetworksNetwork) string { return v.IpRange }).(pulumi.StringOutput)
+}
+
+// The name of the network.
+func (o GetHetznerNetworksNetworkOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetHetznerNetworksNetwork) string { return v.Name }).(pulumi.StringOutput)
+}
+
+type GetHetznerNetworksNetworkArrayOutput struct{ *pulumi.OutputState }
+
+func (GetHetznerNetworksNetworkArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetHetznerNetworksNetwork)(nil)).Elem()
+}
+
+func (o GetHetznerNetworksNetworkArrayOutput) ToGetHetznerNetworksNetworkArrayOutput() GetHetznerNetworksNetworkArrayOutput {
+	return o
+}
+
+func (o GetHetznerNetworksNetworkArrayOutput) ToGetHetznerNetworksNetworkArrayOutputWithContext(ctx context.Context) GetHetznerNetworksNetworkArrayOutput {
+	return o
+}
+
+func (o GetHetznerNetworksNetworkArrayOutput) Index(i pulumi.IntInput) GetHetznerNetworksNetworkOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetHetznerNetworksNetwork {
+		return vs[0].([]GetHetznerNetworksNetwork)[vs[1].(int)]
+	}).(GetHetznerNetworksNetworkOutput)
 }
 
 type GetHetznerServerTypesFilter struct {
@@ -8210,6 +8809,263 @@ func (o GetResourcesResourceArrayOutput) Index(i pulumi.IntInput) GetResourcesRe
 	}).(GetResourcesResourceOutput)
 }
 
+type GetS3StoragesFilter struct {
+	// The field name to filter by.
+	Name string `pulumi:"name"`
+	// The values to match against. Multiple values are ORed.
+	Values []string `pulumi:"values"`
+}
+
+// GetS3StoragesFilterInput is an input type that accepts GetS3StoragesFilterArgs and GetS3StoragesFilterOutput values.
+// You can construct a concrete instance of `GetS3StoragesFilterInput` via:
+//
+//	GetS3StoragesFilterArgs{...}
+type GetS3StoragesFilterInput interface {
+	pulumi.Input
+
+	ToGetS3StoragesFilterOutput() GetS3StoragesFilterOutput
+	ToGetS3StoragesFilterOutputWithContext(context.Context) GetS3StoragesFilterOutput
+}
+
+type GetS3StoragesFilterArgs struct {
+	// The field name to filter by.
+	Name pulumi.StringInput `pulumi:"name"`
+	// The values to match against. Multiple values are ORed.
+	Values pulumi.StringArrayInput `pulumi:"values"`
+}
+
+func (GetS3StoragesFilterArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetS3StoragesFilter)(nil)).Elem()
+}
+
+func (i GetS3StoragesFilterArgs) ToGetS3StoragesFilterOutput() GetS3StoragesFilterOutput {
+	return i.ToGetS3StoragesFilterOutputWithContext(context.Background())
+}
+
+func (i GetS3StoragesFilterArgs) ToGetS3StoragesFilterOutputWithContext(ctx context.Context) GetS3StoragesFilterOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetS3StoragesFilterOutput)
+}
+
+// GetS3StoragesFilterArrayInput is an input type that accepts GetS3StoragesFilterArray and GetS3StoragesFilterArrayOutput values.
+// You can construct a concrete instance of `GetS3StoragesFilterArrayInput` via:
+//
+//	GetS3StoragesFilterArray{ GetS3StoragesFilterArgs{...} }
+type GetS3StoragesFilterArrayInput interface {
+	pulumi.Input
+
+	ToGetS3StoragesFilterArrayOutput() GetS3StoragesFilterArrayOutput
+	ToGetS3StoragesFilterArrayOutputWithContext(context.Context) GetS3StoragesFilterArrayOutput
+}
+
+type GetS3StoragesFilterArray []GetS3StoragesFilterInput
+
+func (GetS3StoragesFilterArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetS3StoragesFilter)(nil)).Elem()
+}
+
+func (i GetS3StoragesFilterArray) ToGetS3StoragesFilterArrayOutput() GetS3StoragesFilterArrayOutput {
+	return i.ToGetS3StoragesFilterArrayOutputWithContext(context.Background())
+}
+
+func (i GetS3StoragesFilterArray) ToGetS3StoragesFilterArrayOutputWithContext(ctx context.Context) GetS3StoragesFilterArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetS3StoragesFilterArrayOutput)
+}
+
+type GetS3StoragesFilterOutput struct{ *pulumi.OutputState }
+
+func (GetS3StoragesFilterOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetS3StoragesFilter)(nil)).Elem()
+}
+
+func (o GetS3StoragesFilterOutput) ToGetS3StoragesFilterOutput() GetS3StoragesFilterOutput {
+	return o
+}
+
+func (o GetS3StoragesFilterOutput) ToGetS3StoragesFilterOutputWithContext(ctx context.Context) GetS3StoragesFilterOutput {
+	return o
+}
+
+// The field name to filter by.
+func (o GetS3StoragesFilterOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetS3StoragesFilter) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// The values to match against. Multiple values are ORed.
+func (o GetS3StoragesFilterOutput) Values() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v GetS3StoragesFilter) []string { return v.Values }).(pulumi.StringArrayOutput)
+}
+
+type GetS3StoragesFilterArrayOutput struct{ *pulumi.OutputState }
+
+func (GetS3StoragesFilterArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetS3StoragesFilter)(nil)).Elem()
+}
+
+func (o GetS3StoragesFilterArrayOutput) ToGetS3StoragesFilterArrayOutput() GetS3StoragesFilterArrayOutput {
+	return o
+}
+
+func (o GetS3StoragesFilterArrayOutput) ToGetS3StoragesFilterArrayOutputWithContext(ctx context.Context) GetS3StoragesFilterArrayOutput {
+	return o
+}
+
+func (o GetS3StoragesFilterArrayOutput) Index(i pulumi.IntInput) GetS3StoragesFilterOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetS3StoragesFilter {
+		return vs[0].([]GetS3StoragesFilter)[vs[1].(int)]
+	}).(GetS3StoragesFilterOutput)
+}
+
+type GetS3StoragesS3Storage struct {
+	// S3 bucket name.
+	Bucket string `pulumi:"bucket"`
+	// Description of the S3 storage.
+	Description string `pulumi:"description"`
+	// S3-compatible endpoint URL.
+	Endpoint string `pulumi:"endpoint"`
+	// Whether Coolify marks this storage as usable.
+	IsUsable bool `pulumi:"isUsable"`
+	// A friendly name for the S3 storage.
+	Name string `pulumi:"name"`
+	// S3 region.
+	Region string `pulumi:"region"`
+	// The unique identifier of the S3 storage.
+	Uuid string `pulumi:"uuid"`
+}
+
+// GetS3StoragesS3StorageInput is an input type that accepts GetS3StoragesS3StorageArgs and GetS3StoragesS3StorageOutput values.
+// You can construct a concrete instance of `GetS3StoragesS3StorageInput` via:
+//
+//	GetS3StoragesS3StorageArgs{...}
+type GetS3StoragesS3StorageInput interface {
+	pulumi.Input
+
+	ToGetS3StoragesS3StorageOutput() GetS3StoragesS3StorageOutput
+	ToGetS3StoragesS3StorageOutputWithContext(context.Context) GetS3StoragesS3StorageOutput
+}
+
+type GetS3StoragesS3StorageArgs struct {
+	// S3 bucket name.
+	Bucket pulumi.StringInput `pulumi:"bucket"`
+	// Description of the S3 storage.
+	Description pulumi.StringInput `pulumi:"description"`
+	// S3-compatible endpoint URL.
+	Endpoint pulumi.StringInput `pulumi:"endpoint"`
+	// Whether Coolify marks this storage as usable.
+	IsUsable pulumi.BoolInput `pulumi:"isUsable"`
+	// A friendly name for the S3 storage.
+	Name pulumi.StringInput `pulumi:"name"`
+	// S3 region.
+	Region pulumi.StringInput `pulumi:"region"`
+	// The unique identifier of the S3 storage.
+	Uuid pulumi.StringInput `pulumi:"uuid"`
+}
+
+func (GetS3StoragesS3StorageArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetS3StoragesS3Storage)(nil)).Elem()
+}
+
+func (i GetS3StoragesS3StorageArgs) ToGetS3StoragesS3StorageOutput() GetS3StoragesS3StorageOutput {
+	return i.ToGetS3StoragesS3StorageOutputWithContext(context.Background())
+}
+
+func (i GetS3StoragesS3StorageArgs) ToGetS3StoragesS3StorageOutputWithContext(ctx context.Context) GetS3StoragesS3StorageOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetS3StoragesS3StorageOutput)
+}
+
+// GetS3StoragesS3StorageArrayInput is an input type that accepts GetS3StoragesS3StorageArray and GetS3StoragesS3StorageArrayOutput values.
+// You can construct a concrete instance of `GetS3StoragesS3StorageArrayInput` via:
+//
+//	GetS3StoragesS3StorageArray{ GetS3StoragesS3StorageArgs{...} }
+type GetS3StoragesS3StorageArrayInput interface {
+	pulumi.Input
+
+	ToGetS3StoragesS3StorageArrayOutput() GetS3StoragesS3StorageArrayOutput
+	ToGetS3StoragesS3StorageArrayOutputWithContext(context.Context) GetS3StoragesS3StorageArrayOutput
+}
+
+type GetS3StoragesS3StorageArray []GetS3StoragesS3StorageInput
+
+func (GetS3StoragesS3StorageArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetS3StoragesS3Storage)(nil)).Elem()
+}
+
+func (i GetS3StoragesS3StorageArray) ToGetS3StoragesS3StorageArrayOutput() GetS3StoragesS3StorageArrayOutput {
+	return i.ToGetS3StoragesS3StorageArrayOutputWithContext(context.Background())
+}
+
+func (i GetS3StoragesS3StorageArray) ToGetS3StoragesS3StorageArrayOutputWithContext(ctx context.Context) GetS3StoragesS3StorageArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetS3StoragesS3StorageArrayOutput)
+}
+
+type GetS3StoragesS3StorageOutput struct{ *pulumi.OutputState }
+
+func (GetS3StoragesS3StorageOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetS3StoragesS3Storage)(nil)).Elem()
+}
+
+func (o GetS3StoragesS3StorageOutput) ToGetS3StoragesS3StorageOutput() GetS3StoragesS3StorageOutput {
+	return o
+}
+
+func (o GetS3StoragesS3StorageOutput) ToGetS3StoragesS3StorageOutputWithContext(ctx context.Context) GetS3StoragesS3StorageOutput {
+	return o
+}
+
+// S3 bucket name.
+func (o GetS3StoragesS3StorageOutput) Bucket() pulumi.StringOutput {
+	return o.ApplyT(func(v GetS3StoragesS3Storage) string { return v.Bucket }).(pulumi.StringOutput)
+}
+
+// Description of the S3 storage.
+func (o GetS3StoragesS3StorageOutput) Description() pulumi.StringOutput {
+	return o.ApplyT(func(v GetS3StoragesS3Storage) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// S3-compatible endpoint URL.
+func (o GetS3StoragesS3StorageOutput) Endpoint() pulumi.StringOutput {
+	return o.ApplyT(func(v GetS3StoragesS3Storage) string { return v.Endpoint }).(pulumi.StringOutput)
+}
+
+// Whether Coolify marks this storage as usable.
+func (o GetS3StoragesS3StorageOutput) IsUsable() pulumi.BoolOutput {
+	return o.ApplyT(func(v GetS3StoragesS3Storage) bool { return v.IsUsable }).(pulumi.BoolOutput)
+}
+
+// A friendly name for the S3 storage.
+func (o GetS3StoragesS3StorageOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetS3StoragesS3Storage) string { return v.Name }).(pulumi.StringOutput)
+}
+
+// S3 region.
+func (o GetS3StoragesS3StorageOutput) Region() pulumi.StringOutput {
+	return o.ApplyT(func(v GetS3StoragesS3Storage) string { return v.Region }).(pulumi.StringOutput)
+}
+
+// The unique identifier of the S3 storage.
+func (o GetS3StoragesS3StorageOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetS3StoragesS3Storage) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+type GetS3StoragesS3StorageArrayOutput struct{ *pulumi.OutputState }
+
+func (GetS3StoragesS3StorageArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetS3StoragesS3Storage)(nil)).Elem()
+}
+
+func (o GetS3StoragesS3StorageArrayOutput) ToGetS3StoragesS3StorageArrayOutput() GetS3StoragesS3StorageArrayOutput {
+	return o
+}
+
+func (o GetS3StoragesS3StorageArrayOutput) ToGetS3StoragesS3StorageArrayOutputWithContext(ctx context.Context) GetS3StoragesS3StorageArrayOutput {
+	return o
+}
+
+func (o GetS3StoragesS3StorageArrayOutput) Index(i pulumi.IntInput) GetS3StoragesS3StorageOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetS3StoragesS3Storage {
+		return vs[0].([]GetS3StoragesS3Storage)[vs[1].(int)]
+	}).(GetS3StoragesS3StorageOutput)
+}
+
 type GetScheduledTasksFilter struct {
 	// The field name to filter by.
 	Name string `pulumi:"name"`
@@ -9007,6 +9863,12 @@ func (o GetServersFilterArrayOutput) Index(i pulumi.IntInput) GetServersFilterOu
 }
 
 type GetServersServer struct {
+	// CPU percentage Coolify uses when compressing volume backups. Read-only. Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage int `pulumi:"backupCompressionCpuPercentage"`
+	// Docker Compose version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion string `pulumi:"composeVersion"`
+	// When Coolify last checked the Compose version on this server.
+	ComposeVersionCheckedAt string `pulumi:"composeVersionCheckedAt"`
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds int `pulumi:"concurrentBuilds"`
 	// SSH connection timeout in seconds.
@@ -9015,6 +9877,10 @@ type GetServersServer struct {
 	DeploymentQueueLimit int `pulumi:"deploymentQueueLimit"`
 	// A description of the server.
 	Description string `pulumi:"description"`
+	// Docker engine version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion string `pulumi:"dockerVersion"`
+	// When Coolify last checked the Docker version on this server.
+	DockerVersionCheckedAt string `pulumi:"dockerVersionCheckedAt"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout int `pulumi:"dynamicTimeout"`
 	// The IP address of the server.
@@ -9051,6 +9917,12 @@ type GetServersServerInput interface {
 }
 
 type GetServersServerArgs struct {
+	// CPU percentage Coolify uses when compressing volume backups. Read-only. Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage pulumi.IntInput `pulumi:"backupCompressionCpuPercentage"`
+	// Docker Compose version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion pulumi.StringInput `pulumi:"composeVersion"`
+	// When Coolify last checked the Compose version on this server.
+	ComposeVersionCheckedAt pulumi.StringInput `pulumi:"composeVersionCheckedAt"`
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds pulumi.IntInput `pulumi:"concurrentBuilds"`
 	// SSH connection timeout in seconds.
@@ -9059,6 +9931,10 @@ type GetServersServerArgs struct {
 	DeploymentQueueLimit pulumi.IntInput `pulumi:"deploymentQueueLimit"`
 	// A description of the server.
 	Description pulumi.StringInput `pulumi:"description"`
+	// Docker engine version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion pulumi.StringInput `pulumi:"dockerVersion"`
+	// When Coolify last checked the Docker version on this server.
+	DockerVersionCheckedAt pulumi.StringInput `pulumi:"dockerVersionCheckedAt"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout pulumi.IntInput `pulumi:"dynamicTimeout"`
 	// The IP address of the server.
@@ -9134,6 +10010,21 @@ func (o GetServersServerOutput) ToGetServersServerOutputWithContext(ctx context.
 	return o
 }
 
+// CPU percentage Coolify uses when compressing volume backups. Read-only. Present on Coolify >= v4.3.3; empty on older instances.
+func (o GetServersServerOutput) BackupCompressionCpuPercentage() pulumi.IntOutput {
+	return o.ApplyT(func(v GetServersServer) int { return v.BackupCompressionCpuPercentage }).(pulumi.IntOutput)
+}
+
+// Docker Compose version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o GetServersServerOutput) ComposeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.ComposeVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Compose version on this server.
+func (o GetServersServerOutput) ComposeVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.ComposeVersionCheckedAt }).(pulumi.StringOutput)
+}
+
 // How many deployments can run in parallel on this server.
 func (o GetServersServerOutput) ConcurrentBuilds() pulumi.IntOutput {
 	return o.ApplyT(func(v GetServersServer) int { return v.ConcurrentBuilds }).(pulumi.IntOutput)
@@ -9152,6 +10043,16 @@ func (o GetServersServerOutput) DeploymentQueueLimit() pulumi.IntOutput {
 // A description of the server.
 func (o GetServersServerOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v GetServersServer) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Docker engine version reported by Coolify for this server (host probe). Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o GetServersServerOutput) DockerVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.DockerVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Docker version on this server.
+func (o GetServersServerOutput) DockerVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v GetServersServer) string { return v.DockerVersionCheckedAt }).(pulumi.StringOutput)
 }
 
 // Timeout in seconds for Docker operations (pull, build, health check) during deployment.
@@ -9696,6 +10597,106 @@ func (o GetStoragesStorageArrayOutput) Index(i pulumi.IntInput) GetStoragesStora
 	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetStoragesStorage {
 		return vs[0].([]GetStoragesStorage)[vs[1].(int)]
 	}).(GetStoragesStorageOutput)
+}
+
+type GetTagsTag struct {
+	Name string `pulumi:"name"`
+	Uuid string `pulumi:"uuid"`
+}
+
+// GetTagsTagInput is an input type that accepts GetTagsTagArgs and GetTagsTagOutput values.
+// You can construct a concrete instance of `GetTagsTagInput` via:
+//
+//	GetTagsTagArgs{...}
+type GetTagsTagInput interface {
+	pulumi.Input
+
+	ToGetTagsTagOutput() GetTagsTagOutput
+	ToGetTagsTagOutputWithContext(context.Context) GetTagsTagOutput
+}
+
+type GetTagsTagArgs struct {
+	Name pulumi.StringInput `pulumi:"name"`
+	Uuid pulumi.StringInput `pulumi:"uuid"`
+}
+
+func (GetTagsTagArgs) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsTag)(nil)).Elem()
+}
+
+func (i GetTagsTagArgs) ToGetTagsTagOutput() GetTagsTagOutput {
+	return i.ToGetTagsTagOutputWithContext(context.Background())
+}
+
+func (i GetTagsTagArgs) ToGetTagsTagOutputWithContext(ctx context.Context) GetTagsTagOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTagsTagOutput)
+}
+
+// GetTagsTagArrayInput is an input type that accepts GetTagsTagArray and GetTagsTagArrayOutput values.
+// You can construct a concrete instance of `GetTagsTagArrayInput` via:
+//
+//	GetTagsTagArray{ GetTagsTagArgs{...} }
+type GetTagsTagArrayInput interface {
+	pulumi.Input
+
+	ToGetTagsTagArrayOutput() GetTagsTagArrayOutput
+	ToGetTagsTagArrayOutputWithContext(context.Context) GetTagsTagArrayOutput
+}
+
+type GetTagsTagArray []GetTagsTagInput
+
+func (GetTagsTagArray) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTagsTag)(nil)).Elem()
+}
+
+func (i GetTagsTagArray) ToGetTagsTagArrayOutput() GetTagsTagArrayOutput {
+	return i.ToGetTagsTagArrayOutputWithContext(context.Background())
+}
+
+func (i GetTagsTagArray) ToGetTagsTagArrayOutputWithContext(ctx context.Context) GetTagsTagArrayOutput {
+	return pulumi.ToOutputWithContext(ctx, i).(GetTagsTagArrayOutput)
+}
+
+type GetTagsTagOutput struct{ *pulumi.OutputState }
+
+func (GetTagsTagOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*GetTagsTag)(nil)).Elem()
+}
+
+func (o GetTagsTagOutput) ToGetTagsTagOutput() GetTagsTagOutput {
+	return o
+}
+
+func (o GetTagsTagOutput) ToGetTagsTagOutputWithContext(ctx context.Context) GetTagsTagOutput {
+	return o
+}
+
+func (o GetTagsTagOutput) Name() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTag) string { return v.Name }).(pulumi.StringOutput)
+}
+
+func (o GetTagsTagOutput) Uuid() pulumi.StringOutput {
+	return o.ApplyT(func(v GetTagsTag) string { return v.Uuid }).(pulumi.StringOutput)
+}
+
+type GetTagsTagArrayOutput struct{ *pulumi.OutputState }
+
+func (GetTagsTagArrayOutput) ElementType() reflect.Type {
+	return reflect.TypeOf((*[]GetTagsTag)(nil)).Elem()
+}
+
+func (o GetTagsTagArrayOutput) ToGetTagsTagArrayOutput() GetTagsTagArrayOutput {
+	return o
+}
+
+func (o GetTagsTagArrayOutput) ToGetTagsTagArrayOutputWithContext(ctx context.Context) GetTagsTagArrayOutput {
+	return o
+}
+
+func (o GetTagsTagArrayOutput) Index(i pulumi.IntInput) GetTagsTagOutput {
+	return pulumi.All(o, i).ApplyT(func(vs []interface{}) GetTagsTag {
+		return vs[0].([]GetTagsTag)[vs[1].(int)]
+	}).(GetTagsTagOutput)
 }
 
 type GetTaskExecutionsExecution struct {
@@ -11519,6 +12520,12 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGithubAppsFilterArrayInput)(nil)).Elem(), GetGithubAppsFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGithubAppsGithubAppInput)(nil)).Elem(), GetGithubAppsGithubAppArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetGithubAppsGithubAppArrayInput)(nil)).Elem(), GetGithubAppsGithubAppArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGitlabAppsAppInput)(nil)).Elem(), GetGitlabAppsAppArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetGitlabAppsAppArrayInput)(nil)).Elem(), GetGitlabAppsAppArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerFirewallsFilterInput)(nil)).Elem(), GetHetznerFirewallsFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerFirewallsFilterArrayInput)(nil)).Elem(), GetHetznerFirewallsFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerFirewallsFirewallInput)(nil)).Elem(), GetHetznerFirewallsFirewallArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerFirewallsFirewallArrayInput)(nil)).Elem(), GetHetznerFirewallsFirewallArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerImagesFilterInput)(nil)).Elem(), GetHetznerImagesFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerImagesFilterArrayInput)(nil)).Elem(), GetHetznerImagesFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerImagesImageInput)(nil)).Elem(), GetHetznerImagesImageArgs{})
@@ -11527,6 +12534,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerLocationsFilterArrayInput)(nil)).Elem(), GetHetznerLocationsFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerLocationsLocationInput)(nil)).Elem(), GetHetznerLocationsLocationArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerLocationsLocationArrayInput)(nil)).Elem(), GetHetznerLocationsLocationArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerNetworksFilterInput)(nil)).Elem(), GetHetznerNetworksFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerNetworksFilterArrayInput)(nil)).Elem(), GetHetznerNetworksFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerNetworksNetworkInput)(nil)).Elem(), GetHetznerNetworksNetworkArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerNetworksNetworkArrayInput)(nil)).Elem(), GetHetznerNetworksNetworkArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerServerTypesFilterInput)(nil)).Elem(), GetHetznerServerTypesFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerServerTypesFilterArrayInput)(nil)).Elem(), GetHetznerServerTypesFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetHetznerServerTypesServerTypeInput)(nil)).Elem(), GetHetznerServerTypesServerTypeArgs{})
@@ -11547,6 +12558,10 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcesFilterArrayInput)(nil)).Elem(), GetResourcesFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcesResourceInput)(nil)).Elem(), GetResourcesResourceArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetResourcesResourceArrayInput)(nil)).Elem(), GetResourcesResourceArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetS3StoragesFilterInput)(nil)).Elem(), GetS3StoragesFilterArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetS3StoragesFilterArrayInput)(nil)).Elem(), GetS3StoragesFilterArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetS3StoragesS3StorageInput)(nil)).Elem(), GetS3StoragesS3StorageArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetS3StoragesS3StorageArrayInput)(nil)).Elem(), GetS3StoragesS3StorageArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduledTasksFilterInput)(nil)).Elem(), GetScheduledTasksFilterArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduledTasksFilterArrayInput)(nil)).Elem(), GetScheduledTasksFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetScheduledTasksTaskInput)(nil)).Elem(), GetScheduledTasksTaskArgs{})
@@ -11571,6 +12586,8 @@ func init() {
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStoragesFilterArrayInput)(nil)).Elem(), GetStoragesFilterArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStoragesStorageInput)(nil)).Elem(), GetStoragesStorageArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetStoragesStorageArrayInput)(nil)).Elem(), GetStoragesStorageArray{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagInput)(nil)).Elem(), GetTagsTagArgs{})
+	pulumi.RegisterInputType(reflect.TypeOf((*GetTagsTagArrayInput)(nil)).Elem(), GetTagsTagArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTaskExecutionsExecutionInput)(nil)).Elem(), GetTaskExecutionsExecutionArgs{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTaskExecutionsExecutionArrayInput)(nil)).Elem(), GetTaskExecutionsExecutionArray{})
 	pulumi.RegisterInputType(reflect.TypeOf((*GetTaskExecutionsFilterInput)(nil)).Elem(), GetTaskExecutionsFilterArgs{})
@@ -11705,6 +12722,12 @@ func init() {
 	pulumi.RegisterOutputType(GetGithubAppsFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetGithubAppsGithubAppOutput{})
 	pulumi.RegisterOutputType(GetGithubAppsGithubAppArrayOutput{})
+	pulumi.RegisterOutputType(GetGitlabAppsAppOutput{})
+	pulumi.RegisterOutputType(GetGitlabAppsAppArrayOutput{})
+	pulumi.RegisterOutputType(GetHetznerFirewallsFilterOutput{})
+	pulumi.RegisterOutputType(GetHetznerFirewallsFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetHetznerFirewallsFirewallOutput{})
+	pulumi.RegisterOutputType(GetHetznerFirewallsFirewallArrayOutput{})
 	pulumi.RegisterOutputType(GetHetznerImagesFilterOutput{})
 	pulumi.RegisterOutputType(GetHetznerImagesFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetHetznerImagesImageOutput{})
@@ -11713,6 +12736,10 @@ func init() {
 	pulumi.RegisterOutputType(GetHetznerLocationsFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetHetznerLocationsLocationOutput{})
 	pulumi.RegisterOutputType(GetHetznerLocationsLocationArrayOutput{})
+	pulumi.RegisterOutputType(GetHetznerNetworksFilterOutput{})
+	pulumi.RegisterOutputType(GetHetznerNetworksFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetHetznerNetworksNetworkOutput{})
+	pulumi.RegisterOutputType(GetHetznerNetworksNetworkArrayOutput{})
 	pulumi.RegisterOutputType(GetHetznerServerTypesFilterOutput{})
 	pulumi.RegisterOutputType(GetHetznerServerTypesFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetHetznerServerTypesServerTypeOutput{})
@@ -11733,6 +12760,10 @@ func init() {
 	pulumi.RegisterOutputType(GetResourcesFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetResourcesResourceOutput{})
 	pulumi.RegisterOutputType(GetResourcesResourceArrayOutput{})
+	pulumi.RegisterOutputType(GetS3StoragesFilterOutput{})
+	pulumi.RegisterOutputType(GetS3StoragesFilterArrayOutput{})
+	pulumi.RegisterOutputType(GetS3StoragesS3StorageOutput{})
+	pulumi.RegisterOutputType(GetS3StoragesS3StorageArrayOutput{})
 	pulumi.RegisterOutputType(GetScheduledTasksFilterOutput{})
 	pulumi.RegisterOutputType(GetScheduledTasksFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetScheduledTasksTaskOutput{})
@@ -11757,6 +12788,8 @@ func init() {
 	pulumi.RegisterOutputType(GetStoragesFilterArrayOutput{})
 	pulumi.RegisterOutputType(GetStoragesStorageOutput{})
 	pulumi.RegisterOutputType(GetStoragesStorageArrayOutput{})
+	pulumi.RegisterOutputType(GetTagsTagOutput{})
+	pulumi.RegisterOutputType(GetTagsTagArrayOutput{})
 	pulumi.RegisterOutputType(GetTaskExecutionsExecutionOutput{})
 	pulumi.RegisterOutputType(GetTaskExecutionsExecutionArrayOutput{})
 	pulumi.RegisterOutputType(GetTaskExecutionsFilterOutput{})

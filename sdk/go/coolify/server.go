@@ -59,6 +59,12 @@ import (
 type Server struct {
 	pulumi.CustomResourceState
 
+	// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage pulumi.IntOutput `pulumi:"backupCompressionCpuPercentage"`
+	// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion pulumi.StringOutput `pulumi:"composeVersion"`
+	// When Coolify last checked the Compose version on this server. Read-only.
+	ComposeVersionCheckedAt pulumi.StringOutput `pulumi:"composeVersionCheckedAt"`
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds pulumi.IntOutput `pulumi:"concurrentBuilds"`
 	// SSH connection timeout in seconds.
@@ -77,6 +83,10 @@ type Server struct {
 	DockerCleanupFrequency pulumi.StringOutput `pulumi:"dockerCleanupFrequency"`
 	// Disk usage percentage threshold for Docker cleanup.
 	DockerCleanupThreshold pulumi.IntOutput `pulumi:"dockerCleanupThreshold"`
+	// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion pulumi.StringOutput `pulumi:"dockerVersion"`
+	// When Coolify last checked the Docker version on this server. Read-only.
+	DockerVersionCheckedAt pulumi.StringOutput `pulumi:"dockerVersionCheckedAt"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout pulumi.IntOutput `pulumi:"dynamicTimeout"`
 	// Whether the server is force-disabled in Coolify. Read-only (not on public server PATCH allow-list).
@@ -205,6 +215,12 @@ func GetServer(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Server resources.
 type serverState struct {
+	// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage *int `pulumi:"backupCompressionCpuPercentage"`
+	// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion *string `pulumi:"composeVersion"`
+	// When Coolify last checked the Compose version on this server. Read-only.
+	ComposeVersionCheckedAt *string `pulumi:"composeVersionCheckedAt"`
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds *int `pulumi:"concurrentBuilds"`
 	// SSH connection timeout in seconds.
@@ -223,6 +239,10 @@ type serverState struct {
 	DockerCleanupFrequency *string `pulumi:"dockerCleanupFrequency"`
 	// Disk usage percentage threshold for Docker cleanup.
 	DockerCleanupThreshold *int `pulumi:"dockerCleanupThreshold"`
+	// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion *string `pulumi:"dockerVersion"`
+	// When Coolify last checked the Docker version on this server. Read-only.
+	DockerVersionCheckedAt *string `pulumi:"dockerVersionCheckedAt"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout *int `pulumi:"dynamicTimeout"`
 	// Whether the server is force-disabled in Coolify. Read-only (not on public server PATCH allow-list).
@@ -309,6 +329,12 @@ type serverState struct {
 }
 
 type ServerState struct {
+	// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage pulumi.IntPtrInput
+	// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion pulumi.StringPtrInput
+	// When Coolify last checked the Compose version on this server. Read-only.
+	ComposeVersionCheckedAt pulumi.StringPtrInput
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds pulumi.IntPtrInput
 	// SSH connection timeout in seconds.
@@ -327,6 +353,10 @@ type ServerState struct {
 	DockerCleanupFrequency pulumi.StringPtrInput
 	// Disk usage percentage threshold for Docker cleanup.
 	DockerCleanupThreshold pulumi.IntPtrInput
+	// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion pulumi.StringPtrInput
+	// When Coolify last checked the Docker version on this server. Read-only.
+	DockerVersionCheckedAt pulumi.StringPtrInput
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout pulumi.IntPtrInput
 	// Whether the server is force-disabled in Coolify. Read-only (not on public server PATCH allow-list).
@@ -564,6 +594,21 @@ func (o ServerOutput) ToServerOutputWithContext(ctx context.Context) ServerOutpu
 	return o
 }
 
+// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+func (o ServerOutput) BackupCompressionCpuPercentage() pulumi.IntOutput {
+	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.BackupCompressionCpuPercentage }).(pulumi.IntOutput)
+}
+
+// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o ServerOutput) ComposeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.ComposeVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Compose version on this server. Read-only.
+func (o ServerOutput) ComposeVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.ComposeVersionCheckedAt }).(pulumi.StringOutput)
+}
+
 // How many deployments can run in parallel on this server.
 func (o ServerOutput) ConcurrentBuilds() pulumi.IntOutput {
 	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.ConcurrentBuilds }).(pulumi.IntOutput)
@@ -607,6 +652,16 @@ func (o ServerOutput) DockerCleanupFrequency() pulumi.StringOutput {
 // Disk usage percentage threshold for Docker cleanup.
 func (o ServerOutput) DockerCleanupThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *Server) pulumi.IntOutput { return v.DockerCleanupThreshold }).(pulumi.IntOutput)
+}
+
+// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o ServerOutput) DockerVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.DockerVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Docker version on this server. Read-only.
+func (o ServerOutput) DockerVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *Server) pulumi.StringOutput { return v.DockerVersionCheckedAt }).(pulumi.StringOutput)
 }
 
 // Timeout in seconds for Docker operations (pull, build, health check) during deployment.

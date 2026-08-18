@@ -1,9 +1,11 @@
 module github.com/coolify-terraform/terraform-provider-coolify/shim
 
-go 1.26.5
+go 1.26.6
+
+replace github.com/coolify-terraform/terraform-provider-coolify => github.com/mheers/terraform-provider-coolify v0.1.17
 
 require (
-	github.com/coolify-terraform/terraform-provider-coolify v0.1.13
+	github.com/coolify-terraform/terraform-provider-coolify v0.1.17
 	github.com/hashicorp/terraform-plugin-framework v1.19.0
 )
 

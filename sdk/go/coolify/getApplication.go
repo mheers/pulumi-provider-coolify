@@ -80,6 +80,8 @@ type LookupApplicationResult struct {
 	GitRepository string `pulumi:"gitRepository"`
 	// The install command.
 	InstallCommand string `pulumi:"installCommand"`
+	// Whether Coolify uses a consistent container name for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> for apps that keep an exclusive file lock on a persistent volume (SQLite, DuckDB, LMDB, BoltDB). A fixed name makes Docker refuse a second container on the same mounts, so Coolify falls back to stop-then-start instead of a rolling update that would leave the new container unable to open the store while still reporting a successful deploy. Requires Coolify >= v4.3.0.
+	IsConsistentContainerNameEnabled bool `pulumi:"isConsistentContainerNameEnabled"`
 	// The maximum number of container restarts before Coolify stops the application.
 	MaxRestartCount int `pulumi:"maxRestartCount"`
 	// The name of the application.
@@ -185,6 +187,11 @@ func (o LookupApplicationResultOutput) GitRepository() pulumi.StringOutput {
 // The install command.
 func (o LookupApplicationResultOutput) InstallCommand() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupApplicationResult) string { return v.InstallCommand }).(pulumi.StringOutput)
+}
+
+// Whether Coolify uses a consistent container name for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> for apps that keep an exclusive file lock on a persistent volume (SQLite, DuckDB, LMDB, BoltDB). A fixed name makes Docker refuse a second container on the same mounts, so Coolify falls back to stop-then-start instead of a rolling update that would leave the new container unable to open the store while still reporting a successful deploy. Requires Coolify >= v4.3.0.
+func (o LookupApplicationResultOutput) IsConsistentContainerNameEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v LookupApplicationResult) bool { return v.IsConsistentContainerNameEnabled }).(pulumi.BoolOutput)
 }
 
 // The maximum number of container restarts before Coolify stops the application.

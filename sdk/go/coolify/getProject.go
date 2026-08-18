@@ -60,6 +60,10 @@ type LookupProjectArgs struct {
 type LookupProjectResult struct {
 	// A description of the project.
 	Description string `pulumi:"description"`
+	// Storage path of the project icon uploaded in the Coolify UI. Read-only. Present on GET /projects/{uuid} on Coolify >= v4.3.3; omitted from the list endpoint and older instances.
+	IconPath string `pulumi:"iconPath"`
+	// Icon storage backend (<span pulumi-lang-nodejs="`local`" pulumi-lang-dotnet="`Local`" pulumi-lang-go="`local`" pulumi-lang-python="`local`" pulumi-lang-yaml="`local`" pulumi-lang-java="`local`" pulumi-lang-hcl="`local`">`local`</span> or <span pulumi-lang-nodejs="`s3`" pulumi-lang-dotnet="`S3`" pulumi-lang-go="`s3`" pulumi-lang-python="`s3`" pulumi-lang-yaml="`s3`" pulumi-lang-java="`s3`" pulumi-lang-hcl="`s3`">`s3`</span>). Read-only. Present on GET /projects/{uuid} on Coolify >= v4.3.3.
+	IconStorageType string `pulumi:"iconStorageType"`
 	// The name of the project.
 	Name string `pulumi:"name"`
 	// The unique identifier of the project to look up.
@@ -103,6 +107,16 @@ func (o LookupProjectResultOutput) ToLookupProjectResultOutputWithContext(ctx co
 // A description of the project.
 func (o LookupProjectResultOutput) Description() pulumi.StringOutput {
 	return o.ApplyT(func(v LookupProjectResult) string { return v.Description }).(pulumi.StringOutput)
+}
+
+// Storage path of the project icon uploaded in the Coolify UI. Read-only. Present on GET /projects/{uuid} on Coolify >= v4.3.3; omitted from the list endpoint and older instances.
+func (o LookupProjectResultOutput) IconPath() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.IconPath }).(pulumi.StringOutput)
+}
+
+// Icon storage backend (<span pulumi-lang-nodejs="`local`" pulumi-lang-dotnet="`Local`" pulumi-lang-go="`local`" pulumi-lang-python="`local`" pulumi-lang-yaml="`local`" pulumi-lang-java="`local`" pulumi-lang-hcl="`local`">`local`</span> or <span pulumi-lang-nodejs="`s3`" pulumi-lang-dotnet="`S3`" pulumi-lang-go="`s3`" pulumi-lang-python="`s3`" pulumi-lang-yaml="`s3`" pulumi-lang-java="`s3`" pulumi-lang-hcl="`s3`">`s3`</span>). Read-only. Present on GET /projects/{uuid} on Coolify >= v4.3.3.
+func (o LookupProjectResultOutput) IconStorageType() pulumi.StringOutput {
+	return o.ApplyT(func(v LookupProjectResult) string { return v.IconStorageType }).(pulumi.StringOutput)
 }
 
 // The name of the project.

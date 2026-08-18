@@ -88,6 +88,8 @@ type ApplicationDockerfile struct {
 	ConnectToDockerNetwork pulumi.BoolOutput `pulumi:"connectToDockerNetwork"`
 	// Custom Docker run options passed to the container.
 	CustomDockerRunOptions pulumi.StringPtrOutput `pulumi:"customDockerRunOptions"`
+	// Custom internal container name for the application. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	CustomInternalName pulumi.StringOutput `pulumi:"customInternalName"`
 	// Custom Docker labels for the container. The provider accepts plain text or pre-encoded base64; encoding is handled automatically.
 	CustomLabels pulumi.StringPtrOutput `pulumi:"customLabels"`
 	// Custom network aliases for the container.
@@ -124,6 +126,14 @@ type ApplicationDockerfile struct {
 	GitCommitSha pulumi.StringPtrOutput `pulumi:"gitCommitSha"`
 	// The Git repository URL. Read-only, set by the API.
 	GitRepository pulumi.StringOutput `pulumi:"gitRepository"`
+	// Number of GPUs to allocate (string form as accepted by Coolify). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuCount pulumi.StringOutput `pulumi:"gpuCount"`
+	// Comma-separated GPU device IDs to pass to the container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDeviceIds pulumi.StringOutput `pulumi:"gpuDeviceIds"`
+	// GPU driver for the application container (Coolify default <span pulumi-lang-nodejs="`nvidia`" pulumi-lang-dotnet="`Nvidia`" pulumi-lang-go="`nvidia`" pulumi-lang-python="`nvidia`" pulumi-lang-yaml="`nvidia`" pulumi-lang-java="`nvidia`" pulumi-lang-hcl="`nvidia`">`nvidia`</span>). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDriver pulumi.StringOutput `pulumi:"gpuDriver"`
+	// Additional GPU options string for the application container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuOptions pulumi.StringOutput `pulumi:"gpuOptions"`
 	// Custom health check command (used when type is <span pulumi-lang-nodejs="`cmd`" pulumi-lang-dotnet="`Cmd`" pulumi-lang-go="`cmd`" pulumi-lang-python="`cmd`" pulumi-lang-yaml="`cmd`" pulumi-lang-java="`cmd`" pulumi-lang-hcl="`cmd`">`cmd`</span>).
 	HealthCheckCommand pulumi.StringPtrOutput `pulumi:"healthCheckCommand"`
 	// Whether health checks are enabled. Coolify defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> for new applications.
@@ -166,6 +176,8 @@ type ApplicationDockerfile struct {
 	InstantDeploy pulumi.BoolOutput `pulumi:"instantDeploy"`
 	// Whether auto-deploy on push is enabled.
 	IsAutoDeployEnabled pulumi.BoolOutput `pulumi:"isAutoDeployEnabled"`
+	// Whether Coolify uses a consistent container name for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> for apps that keep an exclusive file lock on a persistent volume (SQLite, DuckDB, LMDB, BoltDB). A fixed name makes Docker refuse a second container on the same mounts, so Coolify falls back to stop-then-start instead of a rolling update that would leave the new container unable to open the store while still reporting a successful deploy. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsConsistentContainerNameEnabled pulumi.BoolOutput `pulumi:"isConsistentContainerNameEnabled"`
 	// Whether container label escaping is enabled.
 	IsContainerLabelEscapeEnabled pulumi.BoolOutput `pulumi:"isContainerLabelEscapeEnabled"`
 	// Whether environment variables are sorted. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
@@ -178,10 +190,14 @@ type ApplicationDockerfile struct {
 	IsGitShallowCloneEnabled pulumi.BoolOutput `pulumi:"isGitShallowCloneEnabled"`
 	// Whether Git submodules are fetched during clone. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGitSubmodulesEnabled pulumi.BoolOutput `pulumi:"isGitSubmodulesEnabled"`
+	// Whether GPU support is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsGpuEnabled pulumi.BoolOutput `pulumi:"isGpuEnabled"`
 	// Whether gzip compression is enabled for the application proxy. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGzipEnabled pulumi.BoolOutput `pulumi:"isGzipEnabled"`
 	// Whether HTTP Basic Authentication is enabled.
 	IsHttpBasicAuthEnabled pulumi.BoolOutput `pulumi:"isHttpBasicAuthEnabled"`
+	// Whether log drain is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsLogDrainEnabled pulumi.BoolOutput `pulumi:"isLogDrainEnabled"`
 	// Whether preview deployments from public pull requests are enabled. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsPrDeploymentsPublicEnabled pulumi.BoolOutput `pulumi:"isPrDeploymentsPublicEnabled"`
 	// Whether to preserve the full Git repository (instead of shallow clone).
@@ -222,6 +238,8 @@ type ApplicationDockerfile struct {
 	MaxRestartCount pulumi.IntOutput `pulumi:"maxRestartCount"`
 	// The name of the application.
 	Name pulumi.StringOutput `pulumi:"name"`
+	// Subset of application domain URLs served with an `X-Robots-Tag: noindex, nofollow` response header (keeps them out of search engines). Entries that are not among the application domains are ignored by Coolify. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	NoindexDomains pulumi.StringArrayOutput `pulumi:"noindexDomains"`
 	// The ports to expose, as a comma-separated list (e.g., <span pulumi-lang-nodejs="`80`" pulumi-lang-dotnet="`80`" pulumi-lang-go="`80`" pulumi-lang-python="`80`" pulumi-lang-yaml="`80`" pulumi-lang-java="`80`" pulumi-lang-hcl="`80`">`80`</span> or `80,443`).
 	PortsExposes pulumi.StringOutput `pulumi:"portsExposes"`
 	// Port mappings in `host:container` format, comma-separated (e.g., `8080:80` or `8080:80,8443:443`).
@@ -346,6 +364,8 @@ type applicationDockerfileState struct {
 	ConnectToDockerNetwork *bool `pulumi:"connectToDockerNetwork"`
 	// Custom Docker run options passed to the container.
 	CustomDockerRunOptions *string `pulumi:"customDockerRunOptions"`
+	// Custom internal container name for the application. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	CustomInternalName *string `pulumi:"customInternalName"`
 	// Custom Docker labels for the container. The provider accepts plain text or pre-encoded base64; encoding is handled automatically.
 	CustomLabels *string `pulumi:"customLabels"`
 	// Custom network aliases for the container.
@@ -382,6 +402,14 @@ type applicationDockerfileState struct {
 	GitCommitSha *string `pulumi:"gitCommitSha"`
 	// The Git repository URL. Read-only, set by the API.
 	GitRepository *string `pulumi:"gitRepository"`
+	// Number of GPUs to allocate (string form as accepted by Coolify). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuCount *string `pulumi:"gpuCount"`
+	// Comma-separated GPU device IDs to pass to the container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDeviceIds *string `pulumi:"gpuDeviceIds"`
+	// GPU driver for the application container (Coolify default <span pulumi-lang-nodejs="`nvidia`" pulumi-lang-dotnet="`Nvidia`" pulumi-lang-go="`nvidia`" pulumi-lang-python="`nvidia`" pulumi-lang-yaml="`nvidia`" pulumi-lang-java="`nvidia`" pulumi-lang-hcl="`nvidia`">`nvidia`</span>). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDriver *string `pulumi:"gpuDriver"`
+	// Additional GPU options string for the application container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuOptions *string `pulumi:"gpuOptions"`
 	// Custom health check command (used when type is <span pulumi-lang-nodejs="`cmd`" pulumi-lang-dotnet="`Cmd`" pulumi-lang-go="`cmd`" pulumi-lang-python="`cmd`" pulumi-lang-yaml="`cmd`" pulumi-lang-java="`cmd`" pulumi-lang-hcl="`cmd`">`cmd`</span>).
 	HealthCheckCommand *string `pulumi:"healthCheckCommand"`
 	// Whether health checks are enabled. Coolify defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> for new applications.
@@ -424,6 +452,8 @@ type applicationDockerfileState struct {
 	InstantDeploy *bool `pulumi:"instantDeploy"`
 	// Whether auto-deploy on push is enabled.
 	IsAutoDeployEnabled *bool `pulumi:"isAutoDeployEnabled"`
+	// Whether Coolify uses a consistent container name for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> for apps that keep an exclusive file lock on a persistent volume (SQLite, DuckDB, LMDB, BoltDB). A fixed name makes Docker refuse a second container on the same mounts, so Coolify falls back to stop-then-start instead of a rolling update that would leave the new container unable to open the store while still reporting a successful deploy. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsConsistentContainerNameEnabled *bool `pulumi:"isConsistentContainerNameEnabled"`
 	// Whether container label escaping is enabled.
 	IsContainerLabelEscapeEnabled *bool `pulumi:"isContainerLabelEscapeEnabled"`
 	// Whether environment variables are sorted. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
@@ -436,10 +466,14 @@ type applicationDockerfileState struct {
 	IsGitShallowCloneEnabled *bool `pulumi:"isGitShallowCloneEnabled"`
 	// Whether Git submodules are fetched during clone. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGitSubmodulesEnabled *bool `pulumi:"isGitSubmodulesEnabled"`
+	// Whether GPU support is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsGpuEnabled *bool `pulumi:"isGpuEnabled"`
 	// Whether gzip compression is enabled for the application proxy. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGzipEnabled *bool `pulumi:"isGzipEnabled"`
 	// Whether HTTP Basic Authentication is enabled.
 	IsHttpBasicAuthEnabled *bool `pulumi:"isHttpBasicAuthEnabled"`
+	// Whether log drain is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsLogDrainEnabled *bool `pulumi:"isLogDrainEnabled"`
 	// Whether preview deployments from public pull requests are enabled. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsPrDeploymentsPublicEnabled *bool `pulumi:"isPrDeploymentsPublicEnabled"`
 	// Whether to preserve the full Git repository (instead of shallow clone).
@@ -480,6 +514,8 @@ type applicationDockerfileState struct {
 	MaxRestartCount *int `pulumi:"maxRestartCount"`
 	// The name of the application.
 	Name *string `pulumi:"name"`
+	// Subset of application domain URLs served with an `X-Robots-Tag: noindex, nofollow` response header (keeps them out of search engines). Entries that are not among the application domains are ignored by Coolify. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	NoindexDomains []string `pulumi:"noindexDomains"`
 	// The ports to expose, as a comma-separated list (e.g., <span pulumi-lang-nodejs="`80`" pulumi-lang-dotnet="`80`" pulumi-lang-go="`80`" pulumi-lang-python="`80`" pulumi-lang-yaml="`80`" pulumi-lang-java="`80`" pulumi-lang-hcl="`80`">`80`</span> or `80,443`).
 	PortsExposes *string `pulumi:"portsExposes"`
 	// Port mappings in `host:container` format, comma-separated (e.g., `8080:80` or `8080:80,8443:443`).
@@ -536,6 +572,8 @@ type ApplicationDockerfileState struct {
 	ConnectToDockerNetwork pulumi.BoolPtrInput
 	// Custom Docker run options passed to the container.
 	CustomDockerRunOptions pulumi.StringPtrInput
+	// Custom internal container name for the application. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	CustomInternalName pulumi.StringPtrInput
 	// Custom Docker labels for the container. The provider accepts plain text or pre-encoded base64; encoding is handled automatically.
 	CustomLabels pulumi.StringPtrInput
 	// Custom network aliases for the container.
@@ -572,6 +610,14 @@ type ApplicationDockerfileState struct {
 	GitCommitSha pulumi.StringPtrInput
 	// The Git repository URL. Read-only, set by the API.
 	GitRepository pulumi.StringPtrInput
+	// Number of GPUs to allocate (string form as accepted by Coolify). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuCount pulumi.StringPtrInput
+	// Comma-separated GPU device IDs to pass to the container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDeviceIds pulumi.StringPtrInput
+	// GPU driver for the application container (Coolify default <span pulumi-lang-nodejs="`nvidia`" pulumi-lang-dotnet="`Nvidia`" pulumi-lang-go="`nvidia`" pulumi-lang-python="`nvidia`" pulumi-lang-yaml="`nvidia`" pulumi-lang-java="`nvidia`" pulumi-lang-hcl="`nvidia`">`nvidia`</span>). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDriver pulumi.StringPtrInput
+	// Additional GPU options string for the application container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuOptions pulumi.StringPtrInput
 	// Custom health check command (used when type is <span pulumi-lang-nodejs="`cmd`" pulumi-lang-dotnet="`Cmd`" pulumi-lang-go="`cmd`" pulumi-lang-python="`cmd`" pulumi-lang-yaml="`cmd`" pulumi-lang-java="`cmd`" pulumi-lang-hcl="`cmd`">`cmd`</span>).
 	HealthCheckCommand pulumi.StringPtrInput
 	// Whether health checks are enabled. Coolify defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> for new applications.
@@ -614,6 +660,8 @@ type ApplicationDockerfileState struct {
 	InstantDeploy pulumi.BoolPtrInput
 	// Whether auto-deploy on push is enabled.
 	IsAutoDeployEnabled pulumi.BoolPtrInput
+	// Whether Coolify uses a consistent container name for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> for apps that keep an exclusive file lock on a persistent volume (SQLite, DuckDB, LMDB, BoltDB). A fixed name makes Docker refuse a second container on the same mounts, so Coolify falls back to stop-then-start instead of a rolling update that would leave the new container unable to open the store while still reporting a successful deploy. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsConsistentContainerNameEnabled pulumi.BoolPtrInput
 	// Whether container label escaping is enabled.
 	IsContainerLabelEscapeEnabled pulumi.BoolPtrInput
 	// Whether environment variables are sorted. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
@@ -626,10 +674,14 @@ type ApplicationDockerfileState struct {
 	IsGitShallowCloneEnabled pulumi.BoolPtrInput
 	// Whether Git submodules are fetched during clone. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGitSubmodulesEnabled pulumi.BoolPtrInput
+	// Whether GPU support is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsGpuEnabled pulumi.BoolPtrInput
 	// Whether gzip compression is enabled for the application proxy. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGzipEnabled pulumi.BoolPtrInput
 	// Whether HTTP Basic Authentication is enabled.
 	IsHttpBasicAuthEnabled pulumi.BoolPtrInput
+	// Whether log drain is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsLogDrainEnabled pulumi.BoolPtrInput
 	// Whether preview deployments from public pull requests are enabled. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsPrDeploymentsPublicEnabled pulumi.BoolPtrInput
 	// Whether to preserve the full Git repository (instead of shallow clone).
@@ -670,6 +722,8 @@ type ApplicationDockerfileState struct {
 	MaxRestartCount pulumi.IntPtrInput
 	// The name of the application.
 	Name pulumi.StringPtrInput
+	// Subset of application domain URLs served with an `X-Robots-Tag: noindex, nofollow` response header (keeps them out of search engines). Entries that are not among the application domains are ignored by Coolify. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	NoindexDomains pulumi.StringArrayInput
 	// The ports to expose, as a comma-separated list (e.g., <span pulumi-lang-nodejs="`80`" pulumi-lang-dotnet="`80`" pulumi-lang-go="`80`" pulumi-lang-python="`80`" pulumi-lang-yaml="`80`" pulumi-lang-java="`80`" pulumi-lang-hcl="`80`">`80`</span> or `80,443`).
 	PortsExposes pulumi.StringPtrInput
 	// Port mappings in `host:container` format, comma-separated (e.g., `8080:80` or `8080:80,8443:443`).
@@ -728,6 +782,8 @@ type applicationDockerfileArgs struct {
 	ConnectToDockerNetwork *bool `pulumi:"connectToDockerNetwork"`
 	// Custom Docker run options passed to the container.
 	CustomDockerRunOptions *string `pulumi:"customDockerRunOptions"`
+	// Custom internal container name for the application. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	CustomInternalName *string `pulumi:"customInternalName"`
 	// Custom Docker labels for the container. The provider accepts plain text or pre-encoded base64; encoding is handled automatically.
 	CustomLabels *string `pulumi:"customLabels"`
 	// Custom network aliases for the container.
@@ -760,6 +816,14 @@ type applicationDockerfileArgs struct {
 	ForceDomainOverride *bool `pulumi:"forceDomainOverride"`
 	// The specific Git commit SHA to deploy.
 	GitCommitSha *string `pulumi:"gitCommitSha"`
+	// Number of GPUs to allocate (string form as accepted by Coolify). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuCount *string `pulumi:"gpuCount"`
+	// Comma-separated GPU device IDs to pass to the container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDeviceIds *string `pulumi:"gpuDeviceIds"`
+	// GPU driver for the application container (Coolify default <span pulumi-lang-nodejs="`nvidia`" pulumi-lang-dotnet="`Nvidia`" pulumi-lang-go="`nvidia`" pulumi-lang-python="`nvidia`" pulumi-lang-yaml="`nvidia`" pulumi-lang-java="`nvidia`" pulumi-lang-hcl="`nvidia`">`nvidia`</span>). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDriver *string `pulumi:"gpuDriver"`
+	// Additional GPU options string for the application container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuOptions *string `pulumi:"gpuOptions"`
 	// Custom health check command (used when type is <span pulumi-lang-nodejs="`cmd`" pulumi-lang-dotnet="`Cmd`" pulumi-lang-go="`cmd`" pulumi-lang-python="`cmd`" pulumi-lang-yaml="`cmd`" pulumi-lang-java="`cmd`" pulumi-lang-hcl="`cmd`">`cmd`</span>).
 	HealthCheckCommand *string `pulumi:"healthCheckCommand"`
 	// Whether health checks are enabled. Coolify defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> for new applications.
@@ -802,6 +866,8 @@ type applicationDockerfileArgs struct {
 	InstantDeploy *bool `pulumi:"instantDeploy"`
 	// Whether auto-deploy on push is enabled.
 	IsAutoDeployEnabled *bool `pulumi:"isAutoDeployEnabled"`
+	// Whether Coolify uses a consistent container name for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> for apps that keep an exclusive file lock on a persistent volume (SQLite, DuckDB, LMDB, BoltDB). A fixed name makes Docker refuse a second container on the same mounts, so Coolify falls back to stop-then-start instead of a rolling update that would leave the new container unable to open the store while still reporting a successful deploy. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsConsistentContainerNameEnabled *bool `pulumi:"isConsistentContainerNameEnabled"`
 	// Whether container label escaping is enabled.
 	IsContainerLabelEscapeEnabled *bool `pulumi:"isContainerLabelEscapeEnabled"`
 	// Whether environment variables are sorted. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
@@ -814,10 +880,14 @@ type applicationDockerfileArgs struct {
 	IsGitShallowCloneEnabled *bool `pulumi:"isGitShallowCloneEnabled"`
 	// Whether Git submodules are fetched during clone. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGitSubmodulesEnabled *bool `pulumi:"isGitSubmodulesEnabled"`
+	// Whether GPU support is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsGpuEnabled *bool `pulumi:"isGpuEnabled"`
 	// Whether gzip compression is enabled for the application proxy. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGzipEnabled *bool `pulumi:"isGzipEnabled"`
 	// Whether HTTP Basic Authentication is enabled.
 	IsHttpBasicAuthEnabled *bool `pulumi:"isHttpBasicAuthEnabled"`
+	// Whether log drain is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsLogDrainEnabled *bool `pulumi:"isLogDrainEnabled"`
 	// Whether preview deployments from public pull requests are enabled. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsPrDeploymentsPublicEnabled *bool `pulumi:"isPrDeploymentsPublicEnabled"`
 	// Whether to preserve the full Git repository (instead of shallow clone).
@@ -856,6 +926,8 @@ type applicationDockerfileArgs struct {
 	ManualWebhookSecretGitlab *string `pulumi:"manualWebhookSecretGitlab"`
 	// The name of the application.
 	Name *string `pulumi:"name"`
+	// Subset of application domain URLs served with an `X-Robots-Tag: noindex, nofollow` response header (keeps them out of search engines). Entries that are not among the application domains are ignored by Coolify. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	NoindexDomains []string `pulumi:"noindexDomains"`
 	// The ports to expose, as a comma-separated list (e.g., <span pulumi-lang-nodejs="`80`" pulumi-lang-dotnet="`80`" pulumi-lang-go="`80`" pulumi-lang-python="`80`" pulumi-lang-yaml="`80`" pulumi-lang-java="`80`" pulumi-lang-hcl="`80`">`80`</span> or `80,443`).
 	PortsExposes string `pulumi:"portsExposes"`
 	// Port mappings in `host:container` format, comma-separated (e.g., `8080:80` or `8080:80,8443:443`).
@@ -905,6 +977,8 @@ type ApplicationDockerfileArgs struct {
 	ConnectToDockerNetwork pulumi.BoolPtrInput
 	// Custom Docker run options passed to the container.
 	CustomDockerRunOptions pulumi.StringPtrInput
+	// Custom internal container name for the application. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	CustomInternalName pulumi.StringPtrInput
 	// Custom Docker labels for the container. The provider accepts plain text or pre-encoded base64; encoding is handled automatically.
 	CustomLabels pulumi.StringPtrInput
 	// Custom network aliases for the container.
@@ -937,6 +1011,14 @@ type ApplicationDockerfileArgs struct {
 	ForceDomainOverride pulumi.BoolPtrInput
 	// The specific Git commit SHA to deploy.
 	GitCommitSha pulumi.StringPtrInput
+	// Number of GPUs to allocate (string form as accepted by Coolify). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuCount pulumi.StringPtrInput
+	// Comma-separated GPU device IDs to pass to the container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDeviceIds pulumi.StringPtrInput
+	// GPU driver for the application container (Coolify default <span pulumi-lang-nodejs="`nvidia`" pulumi-lang-dotnet="`Nvidia`" pulumi-lang-go="`nvidia`" pulumi-lang-python="`nvidia`" pulumi-lang-yaml="`nvidia`" pulumi-lang-java="`nvidia`" pulumi-lang-hcl="`nvidia`">`nvidia`</span>). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuDriver pulumi.StringPtrInput
+	// Additional GPU options string for the application container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	GpuOptions pulumi.StringPtrInput
 	// Custom health check command (used when type is <span pulumi-lang-nodejs="`cmd`" pulumi-lang-dotnet="`Cmd`" pulumi-lang-go="`cmd`" pulumi-lang-python="`cmd`" pulumi-lang-yaml="`cmd`" pulumi-lang-java="`cmd`" pulumi-lang-hcl="`cmd`">`cmd`</span>).
 	HealthCheckCommand pulumi.StringPtrInput
 	// Whether health checks are enabled. Coolify defaults to <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> for new applications.
@@ -979,6 +1061,8 @@ type ApplicationDockerfileArgs struct {
 	InstantDeploy pulumi.BoolPtrInput
 	// Whether auto-deploy on push is enabled.
 	IsAutoDeployEnabled pulumi.BoolPtrInput
+	// Whether Coolify uses a consistent container name for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> for apps that keep an exclusive file lock on a persistent volume (SQLite, DuckDB, LMDB, BoltDB). A fixed name makes Docker refuse a second container on the same mounts, so Coolify falls back to stop-then-start instead of a rolling update that would leave the new container unable to open the store while still reporting a successful deploy. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsConsistentContainerNameEnabled pulumi.BoolPtrInput
 	// Whether container label escaping is enabled.
 	IsContainerLabelEscapeEnabled pulumi.BoolPtrInput
 	// Whether environment variables are sorted. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
@@ -991,10 +1075,14 @@ type ApplicationDockerfileArgs struct {
 	IsGitShallowCloneEnabled pulumi.BoolPtrInput
 	// Whether Git submodules are fetched during clone. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGitSubmodulesEnabled pulumi.BoolPtrInput
+	// Whether GPU support is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsGpuEnabled pulumi.BoolPtrInput
 	// Whether gzip compression is enabled for the application proxy. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsGzipEnabled pulumi.BoolPtrInput
 	// Whether HTTP Basic Authentication is enabled.
 	IsHttpBasicAuthEnabled pulumi.BoolPtrInput
+	// Whether log drain is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	IsLogDrainEnabled pulumi.BoolPtrInput
 	// Whether preview deployments from public pull requests are enabled. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 	IsPrDeploymentsPublicEnabled pulumi.BoolPtrInput
 	// Whether to preserve the full Git repository (instead of shallow clone).
@@ -1033,6 +1121,8 @@ type ApplicationDockerfileArgs struct {
 	ManualWebhookSecretGitlab pulumi.StringPtrInput
 	// The name of the application.
 	Name pulumi.StringPtrInput
+	// Subset of application domain URLs served with an `X-Robots-Tag: noindex, nofollow` response header (keeps them out of search engines). Entries that are not among the application domains are ignored by Coolify. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+	NoindexDomains pulumi.StringArrayInput
 	// The ports to expose, as a comma-separated list (e.g., <span pulumi-lang-nodejs="`80`" pulumi-lang-dotnet="`80`" pulumi-lang-go="`80`" pulumi-lang-python="`80`" pulumi-lang-yaml="`80`" pulumi-lang-java="`80`" pulumi-lang-hcl="`80`">`80`</span> or `80,443`).
 	PortsExposes pulumi.StringInput
 	// Port mappings in `host:container` format, comma-separated (e.g., `8080:80` or `8080:80,8443:443`).
@@ -1187,6 +1277,11 @@ func (o ApplicationDockerfileOutput) CustomDockerRunOptions() pulumi.StringPtrOu
 	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringPtrOutput { return v.CustomDockerRunOptions }).(pulumi.StringPtrOutput)
 }
 
+// Custom internal container name for the application. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+func (o ApplicationDockerfileOutput) CustomInternalName() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringOutput { return v.CustomInternalName }).(pulumi.StringOutput)
+}
+
 // Custom Docker labels for the container. The provider accepts plain text or pre-encoded base64; encoding is handled automatically.
 func (o ApplicationDockerfileOutput) CustomLabels() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringPtrOutput { return v.CustomLabels }).(pulumi.StringPtrOutput)
@@ -1275,6 +1370,26 @@ func (o ApplicationDockerfileOutput) GitCommitSha() pulumi.StringPtrOutput {
 // The Git repository URL. Read-only, set by the API.
 func (o ApplicationDockerfileOutput) GitRepository() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringOutput { return v.GitRepository }).(pulumi.StringOutput)
+}
+
+// Number of GPUs to allocate (string form as accepted by Coolify). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+func (o ApplicationDockerfileOutput) GpuCount() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringOutput { return v.GpuCount }).(pulumi.StringOutput)
+}
+
+// Comma-separated GPU device IDs to pass to the container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+func (o ApplicationDockerfileOutput) GpuDeviceIds() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringOutput { return v.GpuDeviceIds }).(pulumi.StringOutput)
+}
+
+// GPU driver for the application container (Coolify default <span pulumi-lang-nodejs="`nvidia`" pulumi-lang-dotnet="`Nvidia`" pulumi-lang-go="`nvidia`" pulumi-lang-python="`nvidia`" pulumi-lang-yaml="`nvidia`" pulumi-lang-java="`nvidia`" pulumi-lang-hcl="`nvidia`">`nvidia`</span>). Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+func (o ApplicationDockerfileOutput) GpuDriver() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringOutput { return v.GpuDriver }).(pulumi.StringOutput)
+}
+
+// Additional GPU options string for the application container. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+func (o ApplicationDockerfileOutput) GpuOptions() pulumi.StringOutput {
+	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringOutput { return v.GpuOptions }).(pulumi.StringOutput)
 }
 
 // Custom health check command (used when type is <span pulumi-lang-nodejs="`cmd`" pulumi-lang-dotnet="`Cmd`" pulumi-lang-go="`cmd`" pulumi-lang-python="`cmd`" pulumi-lang-yaml="`cmd`" pulumi-lang-java="`cmd`" pulumi-lang-hcl="`cmd`">`cmd`</span>).
@@ -1382,6 +1497,11 @@ func (o ApplicationDockerfileOutput) IsAutoDeployEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.BoolOutput { return v.IsAutoDeployEnabled }).(pulumi.BoolOutput)
 }
 
+// Whether Coolify uses a consistent container name for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Set to <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span> for apps that keep an exclusive file lock on a persistent volume (SQLite, DuckDB, LMDB, BoltDB). A fixed name makes Docker refuse a second container on the same mounts, so Coolify falls back to stop-then-start instead of a rolling update that would leave the new container unable to open the store while still reporting a successful deploy. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+func (o ApplicationDockerfileOutput) IsConsistentContainerNameEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.BoolOutput { return v.IsConsistentContainerNameEnabled }).(pulumi.BoolOutput)
+}
+
 // Whether container label escaping is enabled.
 func (o ApplicationDockerfileOutput) IsContainerLabelEscapeEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.BoolOutput { return v.IsContainerLabelEscapeEnabled }).(pulumi.BoolOutput)
@@ -1412,6 +1532,11 @@ func (o ApplicationDockerfileOutput) IsGitSubmodulesEnabled() pulumi.BoolOutput 
 	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.BoolOutput { return v.IsGitSubmodulesEnabled }).(pulumi.BoolOutput)
 }
 
+// Whether GPU support is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+func (o ApplicationDockerfileOutput) IsGpuEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.BoolOutput { return v.IsGpuEnabled }).(pulumi.BoolOutput)
+}
+
 // Whether gzip compression is enabled for the application proxy. Coolify default is <span pulumi-lang-nodejs="`true`" pulumi-lang-dotnet="`True`" pulumi-lang-go="`true`" pulumi-lang-python="`true`" pulumi-lang-yaml="`true`" pulumi-lang-java="`true`" pulumi-lang-hcl="`true`">`true`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
 func (o ApplicationDockerfileOutput) IsGzipEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.BoolOutput { return v.IsGzipEnabled }).(pulumi.BoolOutput)
@@ -1420,6 +1545,11 @@ func (o ApplicationDockerfileOutput) IsGzipEnabled() pulumi.BoolOutput {
 // Whether HTTP Basic Authentication is enabled.
 func (o ApplicationDockerfileOutput) IsHttpBasicAuthEnabled() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.BoolOutput { return v.IsHttpBasicAuthEnabled }).(pulumi.BoolOutput)
+}
+
+// Whether log drain is enabled for this application. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+func (o ApplicationDockerfileOutput) IsLogDrainEnabled() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.BoolOutput { return v.IsLogDrainEnabled }).(pulumi.BoolOutput)
 }
 
 // Whether preview deployments from public pull requests are enabled. Coolify default is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>. Writing this requires Coolify >= v4.2.0, where it is on the application endpoints' allow list; against older instances the provider omits it on write and emits a plan warning if the attribute is set, rather than fail the whole request with 422.
@@ -1520,6 +1650,11 @@ func (o ApplicationDockerfileOutput) MaxRestartCount() pulumi.IntOutput {
 // The name of the application.
 func (o ApplicationDockerfileOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
+}
+
+// Subset of application domain URLs served with an `X-Robots-Tag: noindex, nofollow` response header (keeps them out of search engines). Entries that are not among the application domains are ignored by Coolify. Requires Coolify >= v4.3.0. Against older instances the provider omits it on write and emits a plan warning if the attribute is set.
+func (o ApplicationDockerfileOutput) NoindexDomains() pulumi.StringArrayOutput {
+	return o.ApplyT(func(v *ApplicationDockerfile) pulumi.StringArrayOutput { return v.NoindexDomains }).(pulumi.StringArrayOutput)
 }
 
 // The ports to expose, as a comma-separated list (e.g., <span pulumi-lang-nodejs="`80`" pulumi-lang-dotnet="`80`" pulumi-lang-go="`80`" pulumi-lang-python="`80`" pulumi-lang-yaml="`80`" pulumi-lang-java="`80`" pulumi-lang-hcl="`80`">`80`</span> or `80,443`).

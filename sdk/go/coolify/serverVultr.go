@@ -74,10 +74,16 @@ import (
 type ServerVultr struct {
 	pulumi.CustomResourceState
 
+	// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage pulumi.IntOutput `pulumi:"backupCompressionCpuPercentage"`
 	// Cloud-init script to run on server creation. Changing this forces a new resource.
 	CloudInitScript pulumi.StringPtrOutput `pulumi:"cloudInitScript"`
 	// The UUID of the Vultr cloud provider token (from <span pulumi-lang-nodejs="`coolify.CloudToken`" pulumi-lang-dotnet="`coolify.CloudToken`" pulumi-lang-go="`CloudToken`" pulumi-lang-python="`CloudToken`" pulumi-lang-yaml="`coolify.CloudToken`" pulumi-lang-java="`coolify.CloudToken`" pulumi-lang-hcl="`coolify_cloud_token`">`coolify.CloudToken`</span>). Changing this forces a new resource.
 	CloudProviderTokenUuid pulumi.StringOutput `pulumi:"cloudProviderTokenUuid"`
+	// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion pulumi.StringOutput `pulumi:"composeVersion"`
+	// When Coolify last checked the Compose version on this server. Read-only.
+	ComposeVersionCheckedAt pulumi.StringOutput `pulumi:"composeVersionCheckedAt"`
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds pulumi.IntOutput `pulumi:"concurrentBuilds"`
 	// SSH connection timeout in seconds.
@@ -98,6 +104,10 @@ type ServerVultr struct {
 	DockerCleanupFrequency pulumi.StringOutput `pulumi:"dockerCleanupFrequency"`
 	// Disk usage percentage threshold for Docker cleanup.
 	DockerCleanupThreshold pulumi.IntOutput `pulumi:"dockerCleanupThreshold"`
+	// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion pulumi.StringOutput `pulumi:"dockerVersion"`
+	// When Coolify last checked the Docker version on this server. Read-only.
+	DockerVersionCheckedAt pulumi.StringOutput `pulumi:"dockerVersionCheckedAt"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout pulumi.IntOutput `pulumi:"dynamicTimeout"`
 	// Whether to enable IPv6 on the Vultr instance. Defaults to true to match Coolify.
@@ -251,10 +261,16 @@ func GetServerVultr(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServerVultr resources.
 type serverVultrState struct {
+	// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage *int `pulumi:"backupCompressionCpuPercentage"`
 	// Cloud-init script to run on server creation. Changing this forces a new resource.
 	CloudInitScript *string `pulumi:"cloudInitScript"`
 	// The UUID of the Vultr cloud provider token (from <span pulumi-lang-nodejs="`coolify.CloudToken`" pulumi-lang-dotnet="`coolify.CloudToken`" pulumi-lang-go="`CloudToken`" pulumi-lang-python="`CloudToken`" pulumi-lang-yaml="`coolify.CloudToken`" pulumi-lang-java="`coolify.CloudToken`" pulumi-lang-hcl="`coolify_cloud_token`">`coolify.CloudToken`</span>). Changing this forces a new resource.
 	CloudProviderTokenUuid *string `pulumi:"cloudProviderTokenUuid"`
+	// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion *string `pulumi:"composeVersion"`
+	// When Coolify last checked the Compose version on this server. Read-only.
+	ComposeVersionCheckedAt *string `pulumi:"composeVersionCheckedAt"`
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds *int `pulumi:"concurrentBuilds"`
 	// SSH connection timeout in seconds.
@@ -275,6 +291,10 @@ type serverVultrState struct {
 	DockerCleanupFrequency *string `pulumi:"dockerCleanupFrequency"`
 	// Disk usage percentage threshold for Docker cleanup.
 	DockerCleanupThreshold *int `pulumi:"dockerCleanupThreshold"`
+	// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion *string `pulumi:"dockerVersion"`
+	// When Coolify last checked the Docker version on this server. Read-only.
+	DockerVersionCheckedAt *string `pulumi:"dockerVersionCheckedAt"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout *int `pulumi:"dynamicTimeout"`
 	// Whether to enable IPv6 on the Vultr instance. Defaults to true to match Coolify.
@@ -373,10 +393,16 @@ type serverVultrState struct {
 }
 
 type ServerVultrState struct {
+	// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage pulumi.IntPtrInput
 	// Cloud-init script to run on server creation. Changing this forces a new resource.
 	CloudInitScript pulumi.StringPtrInput
 	// The UUID of the Vultr cloud provider token (from <span pulumi-lang-nodejs="`coolify.CloudToken`" pulumi-lang-dotnet="`coolify.CloudToken`" pulumi-lang-go="`CloudToken`" pulumi-lang-python="`CloudToken`" pulumi-lang-yaml="`coolify.CloudToken`" pulumi-lang-java="`coolify.CloudToken`" pulumi-lang-hcl="`coolify_cloud_token`">`coolify.CloudToken`</span>). Changing this forces a new resource.
 	CloudProviderTokenUuid pulumi.StringPtrInput
+	// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion pulumi.StringPtrInput
+	// When Coolify last checked the Compose version on this server. Read-only.
+	ComposeVersionCheckedAt pulumi.StringPtrInput
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds pulumi.IntPtrInput
 	// SSH connection timeout in seconds.
@@ -397,6 +423,10 @@ type ServerVultrState struct {
 	DockerCleanupFrequency pulumi.StringPtrInput
 	// Disk usage percentage threshold for Docker cleanup.
 	DockerCleanupThreshold pulumi.IntPtrInput
+	// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion pulumi.StringPtrInput
+	// When Coolify last checked the Docker version on this server. Read-only.
+	DockerVersionCheckedAt pulumi.StringPtrInput
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout pulumi.IntPtrInput
 	// Whether to enable IPv6 on the Vultr instance. Defaults to true to match Coolify.
@@ -678,6 +708,11 @@ func (o ServerVultrOutput) ToServerVultrOutputWithContext(ctx context.Context) S
 	return o
 }
 
+// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+func (o ServerVultrOutput) BackupCompressionCpuPercentage() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServerVultr) pulumi.IntOutput { return v.BackupCompressionCpuPercentage }).(pulumi.IntOutput)
+}
+
 // Cloud-init script to run on server creation. Changing this forces a new resource.
 func (o ServerVultrOutput) CloudInitScript() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerVultr) pulumi.StringPtrOutput { return v.CloudInitScript }).(pulumi.StringPtrOutput)
@@ -686,6 +721,16 @@ func (o ServerVultrOutput) CloudInitScript() pulumi.StringPtrOutput {
 // The UUID of the Vultr cloud provider token (from <span pulumi-lang-nodejs="`coolify.CloudToken`" pulumi-lang-dotnet="`coolify.CloudToken`" pulumi-lang-go="`CloudToken`" pulumi-lang-python="`CloudToken`" pulumi-lang-yaml="`coolify.CloudToken`" pulumi-lang-java="`coolify.CloudToken`" pulumi-lang-hcl="`coolify_cloud_token`">`coolify.CloudToken`</span>). Changing this forces a new resource.
 func (o ServerVultrOutput) CloudProviderTokenUuid() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerVultr) pulumi.StringOutput { return v.CloudProviderTokenUuid }).(pulumi.StringOutput)
+}
+
+// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o ServerVultrOutput) ComposeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerVultr) pulumi.StringOutput { return v.ComposeVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Compose version on this server. Read-only.
+func (o ServerVultrOutput) ComposeVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerVultr) pulumi.StringOutput { return v.ComposeVersionCheckedAt }).(pulumi.StringOutput)
 }
 
 // How many deployments can run in parallel on this server.
@@ -736,6 +781,16 @@ func (o ServerVultrOutput) DockerCleanupFrequency() pulumi.StringOutput {
 // Disk usage percentage threshold for Docker cleanup.
 func (o ServerVultrOutput) DockerCleanupThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServerVultr) pulumi.IntOutput { return v.DockerCleanupThreshold }).(pulumi.IntOutput)
+}
+
+// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o ServerVultrOutput) DockerVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerVultr) pulumi.StringOutput { return v.DockerVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Docker version on this server. Read-only.
+func (o ServerVultrOutput) DockerVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerVultr) pulumi.StringOutput { return v.DockerVersionCheckedAt }).(pulumi.StringOutput)
 }
 
 // Timeout in seconds for Docker operations (pull, build, health check) during deployment.

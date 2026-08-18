@@ -66,6 +66,7 @@ func Provider() tfbridge.ProviderInfo {
 			"coolify_destination":              uuidResourceInfo(),
 			"coolify_environment_variable":     uuidResourceInfo(),
 			"coolify_github_app":               uuidResourceInfo(),
+			"coolify_gitlab_app":               uuidResourceInfo(),
 			"coolify_private_key":              uuidResourceInfo(),
 			"coolify_project":                  uuidResourceInfo(),
 			"coolify_scheduled_task":           uuidResourceInfo(),

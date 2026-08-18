@@ -61,7 +61,7 @@ import (
 type Destination struct {
 	pulumi.CustomResourceState
 
-	// Display name. Defaults to `{server-name}-{network}` when omitted. Changing this forces a new resource.
+	// Display name. Defaults to `{server-name}-{network}` when omitted. Coolify accepts in-place rename via PATCH.
 	Name pulumi.StringOutput `pulumi:"name"`
 	// Docker network name. Must match `^[a-zA-Z0-9][a-zA-Z0-9._-]*$`. Changing this forces a new resource.
 	Network pulumi.StringOutput `pulumi:"network"`
@@ -109,7 +109,7 @@ func GetDestination(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering Destination resources.
 type destinationState struct {
-	// Display name. Defaults to `{server-name}-{network}` when omitted. Changing this forces a new resource.
+	// Display name. Defaults to `{server-name}-{network}` when omitted. Coolify accepts in-place rename via PATCH.
 	Name *string `pulumi:"name"`
 	// Docker network name. Must match `^[a-zA-Z0-9][a-zA-Z0-9._-]*$`. Changing this forces a new resource.
 	Network *string `pulumi:"network"`
@@ -122,7 +122,7 @@ type destinationState struct {
 }
 
 type DestinationState struct {
-	// Display name. Defaults to `{server-name}-{network}` when omitted. Changing this forces a new resource.
+	// Display name. Defaults to `{server-name}-{network}` when omitted. Coolify accepts in-place rename via PATCH.
 	Name pulumi.StringPtrInput
 	// Docker network name. Must match `^[a-zA-Z0-9][a-zA-Z0-9._-]*$`. Changing this forces a new resource.
 	Network pulumi.StringPtrInput
@@ -139,7 +139,7 @@ func (DestinationState) ElementType() reflect.Type {
 }
 
 type destinationArgs struct {
-	// Display name. Defaults to `{server-name}-{network}` when omitted. Changing this forces a new resource.
+	// Display name. Defaults to `{server-name}-{network}` when omitted. Coolify accepts in-place rename via PATCH.
 	Name *string `pulumi:"name"`
 	// Docker network name. Must match `^[a-zA-Z0-9][a-zA-Z0-9._-]*$`. Changing this forces a new resource.
 	Network string `pulumi:"network"`
@@ -151,7 +151,7 @@ type destinationArgs struct {
 
 // The set of arguments for constructing a Destination resource.
 type DestinationArgs struct {
-	// Display name. Defaults to `{server-name}-{network}` when omitted. Changing this forces a new resource.
+	// Display name. Defaults to `{server-name}-{network}` when omitted. Coolify accepts in-place rename via PATCH.
 	Name pulumi.StringPtrInput
 	// Docker network name. Must match `^[a-zA-Z0-9][a-zA-Z0-9._-]*$`. Changing this forces a new resource.
 	Network pulumi.StringInput
@@ -248,7 +248,7 @@ func (o DestinationOutput) ToDestinationOutputWithContext(ctx context.Context) D
 	return o
 }
 
-// Display name. Defaults to `{server-name}-{network}` when omitted. Changing this forces a new resource.
+// Display name. Defaults to `{server-name}-{network}` when omitted. Coolify accepts in-place rename via PATCH.
 func (o DestinationOutput) Name() pulumi.StringOutput {
 	return o.ApplyT(func(v *Destination) pulumi.StringOutput { return v.Name }).(pulumi.StringOutput)
 }

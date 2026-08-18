@@ -16,7 +16,7 @@ import (
 //
 // > **Warning:** Deleting this resource will delete the server from Coolify and cascade-delete all applications, databases, and services deployed on it. The underlying Hetzner Cloud server is not destroyed; manage its lifecycle separately.
 //
-// > **Import note:** Hetzner-specific fields (<span pulumi-lang-nodejs="`cloudProviderTokenUuid`" pulumi-lang-dotnet="`CloudProviderTokenUuid`" pulumi-lang-go="`cloudProviderTokenUuid`" pulumi-lang-python="`cloud_provider_token_uuid`" pulumi-lang-yaml="`cloudProviderTokenUuid`" pulumi-lang-java="`cloudProviderTokenUuid`" pulumi-lang-hcl="`cloud_provider_token_uuid`">`cloudProviderTokenUuid`</span>, <span pulumi-lang-nodejs="`serverType`" pulumi-lang-dotnet="`ServerType`" pulumi-lang-go="`serverType`" pulumi-lang-python="`server_type`" pulumi-lang-yaml="`serverType`" pulumi-lang-java="`serverType`" pulumi-lang-hcl="`server_type`">`serverType`</span>, <span pulumi-lang-nodejs="`location`" pulumi-lang-dotnet="`Location`" pulumi-lang-go="`location`" pulumi-lang-python="`location`" pulumi-lang-yaml="`location`" pulumi-lang-java="`location`" pulumi-lang-hcl="`location`">`location`</span>, <span pulumi-lang-nodejs="`image`" pulumi-lang-dotnet="`Image`" pulumi-lang-go="`image`" pulumi-lang-python="`image`" pulumi-lang-yaml="`image`" pulumi-lang-java="`image`" pulumi-lang-hcl="`image`">`image`</span>, <span pulumi-lang-nodejs="`hetznerSshKeyIds`" pulumi-lang-dotnet="`HetznerSshKeyIds`" pulumi-lang-go="`hetznerSshKeyIds`" pulumi-lang-python="`hetzner_ssh_key_ids`" pulumi-lang-yaml="`hetznerSshKeyIds`" pulumi-lang-java="`hetznerSshKeyIds`" pulumi-lang-hcl="`hetzner_ssh_key_ids`">`hetznerSshKeyIds`</span>, <span pulumi-lang-nodejs="`cloudInitScript`" pulumi-lang-dotnet="`CloudInitScript`" pulumi-lang-go="`cloudInitScript`" pulumi-lang-python="`cloud_init_script`" pulumi-lang-yaml="`cloudInitScript`" pulumi-lang-java="`cloudInitScript`" pulumi-lang-hcl="`cloud_init_script`">`cloudInitScript`</span>) are only sent at creation time and are not returned by the Coolify API. After `pulumi import`, these fields will be empty in state. Set them in your configuration before running `pulumi preview` to avoid a forced replacement.
+// > **Import note:** Hetzner-specific fields (<span pulumi-lang-nodejs="`cloudProviderTokenUuid`" pulumi-lang-dotnet="`CloudProviderTokenUuid`" pulumi-lang-go="`cloudProviderTokenUuid`" pulumi-lang-python="`cloud_provider_token_uuid`" pulumi-lang-yaml="`cloudProviderTokenUuid`" pulumi-lang-java="`cloudProviderTokenUuid`" pulumi-lang-hcl="`cloud_provider_token_uuid`">`cloudProviderTokenUuid`</span>, <span pulumi-lang-nodejs="`serverType`" pulumi-lang-dotnet="`ServerType`" pulumi-lang-go="`serverType`" pulumi-lang-python="`server_type`" pulumi-lang-yaml="`serverType`" pulumi-lang-java="`serverType`" pulumi-lang-hcl="`server_type`">`serverType`</span>, <span pulumi-lang-nodejs="`location`" pulumi-lang-dotnet="`Location`" pulumi-lang-go="`location`" pulumi-lang-python="`location`" pulumi-lang-yaml="`location`" pulumi-lang-java="`location`" pulumi-lang-hcl="`location`">`location`</span>, <span pulumi-lang-nodejs="`image`" pulumi-lang-dotnet="`Image`" pulumi-lang-go="`image`" pulumi-lang-python="`image`" pulumi-lang-yaml="`image`" pulumi-lang-java="`image`" pulumi-lang-hcl="`image`">`image`</span>, <span pulumi-lang-nodejs="`hetznerSshKeyIds`" pulumi-lang-dotnet="`HetznerSshKeyIds`" pulumi-lang-go="`hetznerSshKeyIds`" pulumi-lang-python="`hetzner_ssh_key_ids`" pulumi-lang-yaml="`hetznerSshKeyIds`" pulumi-lang-java="`hetznerSshKeyIds`" pulumi-lang-hcl="`hetzner_ssh_key_ids`">`hetznerSshKeyIds`</span>, <span pulumi-lang-nodejs="`hetznerFirewallIds`" pulumi-lang-dotnet="`HetznerFirewallIds`" pulumi-lang-go="`hetznerFirewallIds`" pulumi-lang-python="`hetzner_firewall_ids`" pulumi-lang-yaml="`hetznerFirewallIds`" pulumi-lang-java="`hetznerFirewallIds`" pulumi-lang-hcl="`hetzner_firewall_ids`">`hetznerFirewallIds`</span>, <span pulumi-lang-nodejs="`hetznerNetworkIds`" pulumi-lang-dotnet="`HetznerNetworkIds`" pulumi-lang-go="`hetznerNetworkIds`" pulumi-lang-python="`hetzner_network_ids`" pulumi-lang-yaml="`hetznerNetworkIds`" pulumi-lang-java="`hetznerNetworkIds`" pulumi-lang-hcl="`hetzner_network_ids`">`hetznerNetworkIds`</span>, <span pulumi-lang-nodejs="`cloudInitScript`" pulumi-lang-dotnet="`CloudInitScript`" pulumi-lang-go="`cloudInitScript`" pulumi-lang-python="`cloud_init_script`" pulumi-lang-yaml="`cloudInitScript`" pulumi-lang-java="`cloudInitScript`" pulumi-lang-hcl="`cloud_init_script`">`cloudInitScript`</span>, <span pulumi-lang-nodejs="`enableBackups`" pulumi-lang-dotnet="`EnableBackups`" pulumi-lang-go="`enableBackups`" pulumi-lang-python="`enable_backups`" pulumi-lang-yaml="`enableBackups`" pulumi-lang-java="`enableBackups`" pulumi-lang-hcl="`enable_backups`">`enableBackups`</span>) are only sent at creation time and are not returned by the Coolify API. After `pulumi import`, these fields will be empty in state (<span pulumi-lang-nodejs="`enableBackups`" pulumi-lang-dotnet="`EnableBackups`" pulumi-lang-go="`enableBackups`" pulumi-lang-python="`enable_backups`" pulumi-lang-yaml="`enableBackups`" pulumi-lang-java="`enableBackups`" pulumi-lang-hcl="`enable_backups`">`enableBackups`</span> becomes <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span>). Set them in your configuration before running `pulumi preview` to avoid a forced replacement.
 //
 // ## Example Usage
 //
@@ -61,10 +61,16 @@ import (
 type ServerHetzner struct {
 	pulumi.CustomResourceState
 
+	// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage pulumi.IntOutput `pulumi:"backupCompressionCpuPercentage"`
 	// Cloud-init script to run on server creation. Changing this forces a new resource.
 	CloudInitScript pulumi.StringPtrOutput `pulumi:"cloudInitScript"`
 	// The UUID of the Hetzner cloud provider token (from <span pulumi-lang-nodejs="`coolify.CloudToken`" pulumi-lang-dotnet="`coolify.CloudToken`" pulumi-lang-go="`CloudToken`" pulumi-lang-python="`CloudToken`" pulumi-lang-yaml="`coolify.CloudToken`" pulumi-lang-java="`coolify.CloudToken`" pulumi-lang-hcl="`coolify_cloud_token`">`coolify.CloudToken`</span>). Changing this forces a new resource.
 	CloudProviderTokenUuid pulumi.StringOutput `pulumi:"cloudProviderTokenUuid"`
+	// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion pulumi.StringOutput `pulumi:"composeVersion"`
+	// When Coolify last checked the Compose version on this server. Read-only.
+	ComposeVersionCheckedAt pulumi.StringOutput `pulumi:"composeVersionCheckedAt"`
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds pulumi.IntOutput `pulumi:"concurrentBuilds"`
 	// SSH connection timeout in seconds.
@@ -83,8 +89,14 @@ type ServerHetzner struct {
 	DockerCleanupFrequency pulumi.StringOutput `pulumi:"dockerCleanupFrequency"`
 	// Disk usage percentage threshold for Docker cleanup.
 	DockerCleanupThreshold pulumi.IntOutput `pulumi:"dockerCleanupThreshold"`
+	// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion pulumi.StringOutput `pulumi:"dockerVersion"`
+	// When Coolify last checked the Docker version on this server. Read-only.
+	DockerVersionCheckedAt pulumi.StringOutput `pulumi:"dockerVersionCheckedAt"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout pulumi.IntOutput `pulumi:"dynamicTimeout"`
+	// Whether to enable Hetzner Cloud server backups after creation. Adds about 20% to the monthly Hetzner server fee. Requires Coolify >= v4.2.0. Changing this forces a new resource. The Coolify API does not return this field; after import it is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> in state.
+	EnableBackups pulumi.BoolOutput `pulumi:"enableBackups"`
 	// Whether to enable IPv4 on the server.
 	EnableIpv4 pulumi.BoolOutput `pulumi:"enableIpv4"`
 	// Whether to enable IPv6 on the server.
@@ -95,7 +107,11 @@ type ServerHetzner struct {
 	ForceDockerCleanup pulumi.BoolOutput `pulumi:"forceDockerCleanup"`
 	// Whether to generate exact Docker labels (removes extra labels from containers).
 	GenerateExactLabels pulumi.BoolOutput `pulumi:"generateExactLabels"`
-	// Comma-separated list of Hetzner SSH key IDs to install on the server. Use <span pulumi-lang-nodejs="`coolify.getHetznerSshKeys`" pulumi-lang-dotnet="`coolify.getHetznerSshKeys`" pulumi-lang-go="`getHetznerSshKeys`" pulumi-lang-python="`get_hetzner_ssh_keys`" pulumi-lang-yaml="`coolify.getHetznerSshKeys`" pulumi-lang-java="`coolify.getHetznerSshKeys`" pulumi-lang-hcl="`data.coolify_hetzner_ssh_keys`">`coolify.getHetznerSshKeys`</span> data source to list available keys. Changing this forces a new resource.
+	// Existing Hetzner firewall IDs to apply when Coolify creates the server. Use `data.coolify_hetzner_firewalls` to list available firewalls. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerFirewallIds pulumi.IntArrayOutput `pulumi:"hetznerFirewallIds"`
+	// Existing Hetzner private network IDs to attach when Coolify creates the server. Use `data.coolify_hetzner_networks` to list available networks. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerNetworkIds pulumi.IntArrayOutput `pulumi:"hetznerNetworkIds"`
+	// Comma-separated list of additional Hetzner SSH key IDs to install on the server (for example `12345,67890`). Coolify's API expects a JSON integer array; the provider parses this string and sends that array. Use `data.coolify_hetzner_ssh_keys` to list available keys. Changing this forces a new resource.
 	HetznerSshKeyIds pulumi.StringPtrOutput `pulumi:"hetznerSshKeyIds"`
 	// The OS image to use (e.g., `ubuntu-24.04`). Use <span pulumi-lang-nodejs="`coolify.getHetznerImages`" pulumi-lang-dotnet="`coolify.getHetznerImages`" pulumi-lang-go="`getHetznerImages`" pulumi-lang-python="`get_hetzner_images`" pulumi-lang-yaml="`coolify.getHetznerImages`" pulumi-lang-java="`coolify.getHetznerImages`" pulumi-lang-hcl="`data.coolify_hetzner_images`">`coolify.getHetznerImages`</span> data source to list available images. Changing this forces a new resource.
 	Image pulumi.StringOutput `pulumi:"image"`
@@ -238,10 +254,16 @@ func GetServerHetzner(ctx *pulumi.Context,
 
 // Input properties used for looking up and filtering ServerHetzner resources.
 type serverHetznerState struct {
+	// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage *int `pulumi:"backupCompressionCpuPercentage"`
 	// Cloud-init script to run on server creation. Changing this forces a new resource.
 	CloudInitScript *string `pulumi:"cloudInitScript"`
 	// The UUID of the Hetzner cloud provider token (from <span pulumi-lang-nodejs="`coolify.CloudToken`" pulumi-lang-dotnet="`coolify.CloudToken`" pulumi-lang-go="`CloudToken`" pulumi-lang-python="`CloudToken`" pulumi-lang-yaml="`coolify.CloudToken`" pulumi-lang-java="`coolify.CloudToken`" pulumi-lang-hcl="`coolify_cloud_token`">`coolify.CloudToken`</span>). Changing this forces a new resource.
 	CloudProviderTokenUuid *string `pulumi:"cloudProviderTokenUuid"`
+	// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion *string `pulumi:"composeVersion"`
+	// When Coolify last checked the Compose version on this server. Read-only.
+	ComposeVersionCheckedAt *string `pulumi:"composeVersionCheckedAt"`
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds *int `pulumi:"concurrentBuilds"`
 	// SSH connection timeout in seconds.
@@ -260,8 +282,14 @@ type serverHetznerState struct {
 	DockerCleanupFrequency *string `pulumi:"dockerCleanupFrequency"`
 	// Disk usage percentage threshold for Docker cleanup.
 	DockerCleanupThreshold *int `pulumi:"dockerCleanupThreshold"`
+	// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion *string `pulumi:"dockerVersion"`
+	// When Coolify last checked the Docker version on this server. Read-only.
+	DockerVersionCheckedAt *string `pulumi:"dockerVersionCheckedAt"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout *int `pulumi:"dynamicTimeout"`
+	// Whether to enable Hetzner Cloud server backups after creation. Adds about 20% to the monthly Hetzner server fee. Requires Coolify >= v4.2.0. Changing this forces a new resource. The Coolify API does not return this field; after import it is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> in state.
+	EnableBackups *bool `pulumi:"enableBackups"`
 	// Whether to enable IPv4 on the server.
 	EnableIpv4 *bool `pulumi:"enableIpv4"`
 	// Whether to enable IPv6 on the server.
@@ -272,7 +300,11 @@ type serverHetznerState struct {
 	ForceDockerCleanup *bool `pulumi:"forceDockerCleanup"`
 	// Whether to generate exact Docker labels (removes extra labels from containers).
 	GenerateExactLabels *bool `pulumi:"generateExactLabels"`
-	// Comma-separated list of Hetzner SSH key IDs to install on the server. Use <span pulumi-lang-nodejs="`coolify.getHetznerSshKeys`" pulumi-lang-dotnet="`coolify.getHetznerSshKeys`" pulumi-lang-go="`getHetznerSshKeys`" pulumi-lang-python="`get_hetzner_ssh_keys`" pulumi-lang-yaml="`coolify.getHetznerSshKeys`" pulumi-lang-java="`coolify.getHetznerSshKeys`" pulumi-lang-hcl="`data.coolify_hetzner_ssh_keys`">`coolify.getHetznerSshKeys`</span> data source to list available keys. Changing this forces a new resource.
+	// Existing Hetzner firewall IDs to apply when Coolify creates the server. Use `data.coolify_hetzner_firewalls` to list available firewalls. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerFirewallIds []int `pulumi:"hetznerFirewallIds"`
+	// Existing Hetzner private network IDs to attach when Coolify creates the server. Use `data.coolify_hetzner_networks` to list available networks. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerNetworkIds []int `pulumi:"hetznerNetworkIds"`
+	// Comma-separated list of additional Hetzner SSH key IDs to install on the server (for example `12345,67890`). Coolify's API expects a JSON integer array; the provider parses this string and sends that array. Use `data.coolify_hetzner_ssh_keys` to list available keys. Changing this forces a new resource.
 	HetznerSshKeyIds *string `pulumi:"hetznerSshKeyIds"`
 	// The OS image to use (e.g., `ubuntu-24.04`). Use <span pulumi-lang-nodejs="`coolify.getHetznerImages`" pulumi-lang-dotnet="`coolify.getHetznerImages`" pulumi-lang-go="`getHetznerImages`" pulumi-lang-python="`get_hetzner_images`" pulumi-lang-yaml="`coolify.getHetznerImages`" pulumi-lang-java="`coolify.getHetznerImages`" pulumi-lang-hcl="`data.coolify_hetzner_images`">`coolify.getHetznerImages`</span> data source to list available images. Changing this forces a new resource.
 	Image *string `pulumi:"image"`
@@ -360,10 +392,16 @@ type serverHetznerState struct {
 }
 
 type ServerHetznerState struct {
+	// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+	BackupCompressionCpuPercentage pulumi.IntPtrInput
 	// Cloud-init script to run on server creation. Changing this forces a new resource.
 	CloudInitScript pulumi.StringPtrInput
 	// The UUID of the Hetzner cloud provider token (from <span pulumi-lang-nodejs="`coolify.CloudToken`" pulumi-lang-dotnet="`coolify.CloudToken`" pulumi-lang-go="`CloudToken`" pulumi-lang-python="`CloudToken`" pulumi-lang-yaml="`coolify.CloudToken`" pulumi-lang-java="`coolify.CloudToken`" pulumi-lang-hcl="`coolify_cloud_token`">`coolify.CloudToken`</span>). Changing this forces a new resource.
 	CloudProviderTokenUuid pulumi.StringPtrInput
+	// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	ComposeVersion pulumi.StringPtrInput
+	// When Coolify last checked the Compose version on this server. Read-only.
+	ComposeVersionCheckedAt pulumi.StringPtrInput
 	// How many deployments can run in parallel on this server.
 	ConcurrentBuilds pulumi.IntPtrInput
 	// SSH connection timeout in seconds.
@@ -382,8 +420,14 @@ type ServerHetznerState struct {
 	DockerCleanupFrequency pulumi.StringPtrInput
 	// Disk usage percentage threshold for Docker cleanup.
 	DockerCleanupThreshold pulumi.IntPtrInput
+	// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+	DockerVersion pulumi.StringPtrInput
+	// When Coolify last checked the Docker version on this server. Read-only.
+	DockerVersionCheckedAt pulumi.StringPtrInput
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout pulumi.IntPtrInput
+	// Whether to enable Hetzner Cloud server backups after creation. Adds about 20% to the monthly Hetzner server fee. Requires Coolify >= v4.2.0. Changing this forces a new resource. The Coolify API does not return this field; after import it is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> in state.
+	EnableBackups pulumi.BoolPtrInput
 	// Whether to enable IPv4 on the server.
 	EnableIpv4 pulumi.BoolPtrInput
 	// Whether to enable IPv6 on the server.
@@ -394,7 +438,11 @@ type ServerHetznerState struct {
 	ForceDockerCleanup pulumi.BoolPtrInput
 	// Whether to generate exact Docker labels (removes extra labels from containers).
 	GenerateExactLabels pulumi.BoolPtrInput
-	// Comma-separated list of Hetzner SSH key IDs to install on the server. Use <span pulumi-lang-nodejs="`coolify.getHetznerSshKeys`" pulumi-lang-dotnet="`coolify.getHetznerSshKeys`" pulumi-lang-go="`getHetznerSshKeys`" pulumi-lang-python="`get_hetzner_ssh_keys`" pulumi-lang-yaml="`coolify.getHetznerSshKeys`" pulumi-lang-java="`coolify.getHetznerSshKeys`" pulumi-lang-hcl="`data.coolify_hetzner_ssh_keys`">`coolify.getHetznerSshKeys`</span> data source to list available keys. Changing this forces a new resource.
+	// Existing Hetzner firewall IDs to apply when Coolify creates the server. Use `data.coolify_hetzner_firewalls` to list available firewalls. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerFirewallIds pulumi.IntArrayInput
+	// Existing Hetzner private network IDs to attach when Coolify creates the server. Use `data.coolify_hetzner_networks` to list available networks. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerNetworkIds pulumi.IntArrayInput
+	// Comma-separated list of additional Hetzner SSH key IDs to install on the server (for example `12345,67890`). Coolify's API expects a JSON integer array; the provider parses this string and sends that array. Use `data.coolify_hetzner_ssh_keys` to list available keys. Changing this forces a new resource.
 	HetznerSshKeyIds pulumi.StringPtrInput
 	// The OS image to use (e.g., `ubuntu-24.04`). Use <span pulumi-lang-nodejs="`coolify.getHetznerImages`" pulumi-lang-dotnet="`coolify.getHetznerImages`" pulumi-lang-go="`getHetznerImages`" pulumi-lang-python="`get_hetzner_images`" pulumi-lang-yaml="`coolify.getHetznerImages`" pulumi-lang-java="`coolify.getHetznerImages`" pulumi-lang-hcl="`data.coolify_hetzner_images`">`coolify.getHetznerImages`</span> data source to list available images. Changing this forces a new resource.
 	Image pulumi.StringPtrInput
@@ -500,11 +548,17 @@ type serverHetznerArgs struct {
 	Description *string `pulumi:"description"`
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout *int `pulumi:"dynamicTimeout"`
+	// Whether to enable Hetzner Cloud server backups after creation. Adds about 20% to the monthly Hetzner server fee. Requires Coolify >= v4.2.0. Changing this forces a new resource. The Coolify API does not return this field; after import it is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> in state.
+	EnableBackups *bool `pulumi:"enableBackups"`
 	// Whether to enable IPv4 on the server.
 	EnableIpv4 *bool `pulumi:"enableIpv4"`
 	// Whether to enable IPv6 on the server.
 	EnableIpv6 *bool `pulumi:"enableIpv6"`
-	// Comma-separated list of Hetzner SSH key IDs to install on the server. Use <span pulumi-lang-nodejs="`coolify.getHetznerSshKeys`" pulumi-lang-dotnet="`coolify.getHetznerSshKeys`" pulumi-lang-go="`getHetznerSshKeys`" pulumi-lang-python="`get_hetzner_ssh_keys`" pulumi-lang-yaml="`coolify.getHetznerSshKeys`" pulumi-lang-java="`coolify.getHetznerSshKeys`" pulumi-lang-hcl="`data.coolify_hetzner_ssh_keys`">`coolify.getHetznerSshKeys`</span> data source to list available keys. Changing this forces a new resource.
+	// Existing Hetzner firewall IDs to apply when Coolify creates the server. Use `data.coolify_hetzner_firewalls` to list available firewalls. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerFirewallIds []int `pulumi:"hetznerFirewallIds"`
+	// Existing Hetzner private network IDs to attach when Coolify creates the server. Use `data.coolify_hetzner_networks` to list available networks. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerNetworkIds []int `pulumi:"hetznerNetworkIds"`
+	// Comma-separated list of additional Hetzner SSH key IDs to install on the server (for example `12345,67890`). Coolify's API expects a JSON integer array; the provider parses this string and sends that array. Use `data.coolify_hetzner_ssh_keys` to list available keys. Changing this forces a new resource.
 	HetznerSshKeyIds *string `pulumi:"hetznerSshKeyIds"`
 	// The OS image to use (e.g., `ubuntu-24.04`). Use <span pulumi-lang-nodejs="`coolify.getHetznerImages`" pulumi-lang-dotnet="`coolify.getHetznerImages`" pulumi-lang-go="`getHetznerImages`" pulumi-lang-python="`get_hetzner_images`" pulumi-lang-yaml="`coolify.getHetznerImages`" pulumi-lang-java="`coolify.getHetznerImages`" pulumi-lang-hcl="`data.coolify_hetzner_images`">`coolify.getHetznerImages`</span> data source to list available images. Changing this forces a new resource.
 	Image string `pulumi:"image"`
@@ -547,11 +601,17 @@ type ServerHetznerArgs struct {
 	Description pulumi.StringPtrInput
 	// Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 	DynamicTimeout pulumi.IntPtrInput
+	// Whether to enable Hetzner Cloud server backups after creation. Adds about 20% to the monthly Hetzner server fee. Requires Coolify >= v4.2.0. Changing this forces a new resource. The Coolify API does not return this field; after import it is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> in state.
+	EnableBackups pulumi.BoolPtrInput
 	// Whether to enable IPv4 on the server.
 	EnableIpv4 pulumi.BoolPtrInput
 	// Whether to enable IPv6 on the server.
 	EnableIpv6 pulumi.BoolPtrInput
-	// Comma-separated list of Hetzner SSH key IDs to install on the server. Use <span pulumi-lang-nodejs="`coolify.getHetznerSshKeys`" pulumi-lang-dotnet="`coolify.getHetznerSshKeys`" pulumi-lang-go="`getHetznerSshKeys`" pulumi-lang-python="`get_hetzner_ssh_keys`" pulumi-lang-yaml="`coolify.getHetznerSshKeys`" pulumi-lang-java="`coolify.getHetznerSshKeys`" pulumi-lang-hcl="`data.coolify_hetzner_ssh_keys`">`coolify.getHetznerSshKeys`</span> data source to list available keys. Changing this forces a new resource.
+	// Existing Hetzner firewall IDs to apply when Coolify creates the server. Use `data.coolify_hetzner_firewalls` to list available firewalls. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerFirewallIds pulumi.IntArrayInput
+	// Existing Hetzner private network IDs to attach when Coolify creates the server. Use `data.coolify_hetzner_networks` to list available networks. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+	HetznerNetworkIds pulumi.IntArrayInput
+	// Comma-separated list of additional Hetzner SSH key IDs to install on the server (for example `12345,67890`). Coolify's API expects a JSON integer array; the provider parses this string and sends that array. Use `data.coolify_hetzner_ssh_keys` to list available keys. Changing this forces a new resource.
 	HetznerSshKeyIds pulumi.StringPtrInput
 	// The OS image to use (e.g., `ubuntu-24.04`). Use <span pulumi-lang-nodejs="`coolify.getHetznerImages`" pulumi-lang-dotnet="`coolify.getHetznerImages`" pulumi-lang-go="`getHetznerImages`" pulumi-lang-python="`get_hetzner_images`" pulumi-lang-yaml="`coolify.getHetznerImages`" pulumi-lang-java="`coolify.getHetznerImages`" pulumi-lang-hcl="`data.coolify_hetzner_images`">`coolify.getHetznerImages`</span> data source to list available images. Changing this forces a new resource.
 	Image pulumi.StringInput
@@ -665,6 +725,11 @@ func (o ServerHetznerOutput) ToServerHetznerOutputWithContext(ctx context.Contex
 	return o
 }
 
+// CPU percentage Coolify uses when compressing volume backups. Read-only (not on public server PATCH). Present on Coolify >= v4.3.3; empty on older instances.
+func (o ServerHetznerOutput) BackupCompressionCpuPercentage() pulumi.IntOutput {
+	return o.ApplyT(func(v *ServerHetzner) pulumi.IntOutput { return v.BackupCompressionCpuPercentage }).(pulumi.IntOutput)
+}
+
 // Cloud-init script to run on server creation. Changing this forces a new resource.
 func (o ServerHetznerOutput) CloudInitScript() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerHetzner) pulumi.StringPtrOutput { return v.CloudInitScript }).(pulumi.StringPtrOutput)
@@ -673,6 +738,16 @@ func (o ServerHetznerOutput) CloudInitScript() pulumi.StringPtrOutput {
 // The UUID of the Hetzner cloud provider token (from <span pulumi-lang-nodejs="`coolify.CloudToken`" pulumi-lang-dotnet="`coolify.CloudToken`" pulumi-lang-go="`CloudToken`" pulumi-lang-python="`CloudToken`" pulumi-lang-yaml="`coolify.CloudToken`" pulumi-lang-java="`coolify.CloudToken`" pulumi-lang-hcl="`coolify_cloud_token`">`coolify.CloudToken`</span>). Changing this forces a new resource.
 func (o ServerHetznerOutput) CloudProviderTokenUuid() pulumi.StringOutput {
 	return o.ApplyT(func(v *ServerHetzner) pulumi.StringOutput { return v.CloudProviderTokenUuid }).(pulumi.StringOutput)
+}
+
+// Docker Compose version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o ServerHetznerOutput) ComposeVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerHetzner) pulumi.StringOutput { return v.ComposeVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Compose version on this server. Read-only.
+func (o ServerHetznerOutput) ComposeVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerHetzner) pulumi.StringOutput { return v.ComposeVersionCheckedAt }).(pulumi.StringOutput)
 }
 
 // How many deployments can run in parallel on this server.
@@ -720,9 +795,24 @@ func (o ServerHetznerOutput) DockerCleanupThreshold() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServerHetzner) pulumi.IntOutput { return v.DockerCleanupThreshold }).(pulumi.IntOutput)
 }
 
+// Docker engine version reported by Coolify for this server (host probe). Read-only; Populated on Coolify >= v4.3.2 when the host has been probed. Empty on older instances.
+func (o ServerHetznerOutput) DockerVersion() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerHetzner) pulumi.StringOutput { return v.DockerVersion }).(pulumi.StringOutput)
+}
+
+// When Coolify last checked the Docker version on this server. Read-only.
+func (o ServerHetznerOutput) DockerVersionCheckedAt() pulumi.StringOutput {
+	return o.ApplyT(func(v *ServerHetzner) pulumi.StringOutput { return v.DockerVersionCheckedAt }).(pulumi.StringOutput)
+}
+
 // Timeout in seconds for Docker operations (pull, build, health check) during deployment.
 func (o ServerHetznerOutput) DynamicTimeout() pulumi.IntOutput {
 	return o.ApplyT(func(v *ServerHetzner) pulumi.IntOutput { return v.DynamicTimeout }).(pulumi.IntOutput)
+}
+
+// Whether to enable Hetzner Cloud server backups after creation. Adds about 20% to the monthly Hetzner server fee. Requires Coolify >= v4.2.0. Changing this forces a new resource. The Coolify API does not return this field; after import it is <span pulumi-lang-nodejs="`false`" pulumi-lang-dotnet="`False`" pulumi-lang-go="`false`" pulumi-lang-python="`false`" pulumi-lang-yaml="`false`" pulumi-lang-java="`false`" pulumi-lang-hcl="`false`">`false`</span> in state.
+func (o ServerHetznerOutput) EnableBackups() pulumi.BoolOutput {
+	return o.ApplyT(func(v *ServerHetzner) pulumi.BoolOutput { return v.EnableBackups }).(pulumi.BoolOutput)
 }
 
 // Whether to enable IPv4 on the server.
@@ -750,7 +840,17 @@ func (o ServerHetznerOutput) GenerateExactLabels() pulumi.BoolOutput {
 	return o.ApplyT(func(v *ServerHetzner) pulumi.BoolOutput { return v.GenerateExactLabels }).(pulumi.BoolOutput)
 }
 
-// Comma-separated list of Hetzner SSH key IDs to install on the server. Use <span pulumi-lang-nodejs="`coolify.getHetznerSshKeys`" pulumi-lang-dotnet="`coolify.getHetznerSshKeys`" pulumi-lang-go="`getHetznerSshKeys`" pulumi-lang-python="`get_hetzner_ssh_keys`" pulumi-lang-yaml="`coolify.getHetznerSshKeys`" pulumi-lang-java="`coolify.getHetznerSshKeys`" pulumi-lang-hcl="`data.coolify_hetzner_ssh_keys`">`coolify.getHetznerSshKeys`</span> data source to list available keys. Changing this forces a new resource.
+// Existing Hetzner firewall IDs to apply when Coolify creates the server. Use `data.coolify_hetzner_firewalls` to list available firewalls. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+func (o ServerHetznerOutput) HetznerFirewallIds() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v *ServerHetzner) pulumi.IntArrayOutput { return v.HetznerFirewallIds }).(pulumi.IntArrayOutput)
+}
+
+// Existing Hetzner private network IDs to attach when Coolify creates the server. Use `data.coolify_hetzner_networks` to list available networks. Requires Coolify >= v4.2.0. Changing this forces a new resource.
+func (o ServerHetznerOutput) HetznerNetworkIds() pulumi.IntArrayOutput {
+	return o.ApplyT(func(v *ServerHetzner) pulumi.IntArrayOutput { return v.HetznerNetworkIds }).(pulumi.IntArrayOutput)
+}
+
+// Comma-separated list of additional Hetzner SSH key IDs to install on the server (for example `12345,67890`). Coolify's API expects a JSON integer array; the provider parses this string and sends that array. Use `data.coolify_hetzner_ssh_keys` to list available keys. Changing this forces a new resource.
 func (o ServerHetznerOutput) HetznerSshKeyIds() pulumi.StringPtrOutput {
 	return o.ApplyT(func(v *ServerHetzner) pulumi.StringPtrOutput { return v.HetznerSshKeyIds }).(pulumi.StringPtrOutput)
 }

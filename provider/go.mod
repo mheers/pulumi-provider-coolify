@@ -1,6 +1,6 @@
 module github.com/mheers/pulumi-provider-coolify/provider
 
-go 1.26.5
+go 1.26.6
 
 replace github.com/hashicorp/terraform-plugin-sdk/v2 => github.com/pulumi/terraform-plugin-sdk/v2 v2.0.0-20260318212141-5525259d096b
 
@@ -10,6 +10,8 @@ require (
 )
 
 replace github.com/coolify-terraform/terraform-provider-coolify/shim => ./shim
+
+replace github.com/coolify-terraform/terraform-provider-coolify => github.com/mheers/terraform-provider-coolify v0.1.17
 
 require (
 	cel.dev/expr v0.25.2 // indirect
@@ -70,7 +72,7 @@ require (
 	github.com/clipperhouse/uax29/v2 v2.7.0 // indirect
 	github.com/cloudflare/circl v1.6.5 // indirect
 	github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2 // indirect
-	github.com/coolify-terraform/terraform-provider-coolify v0.1.13 // indirect
+	github.com/coolify-terraform/terraform-provider-coolify v0.1.17 // indirect
 	github.com/deckarep/golang-set/v2 v2.5.0 // indirect
 	github.com/djherbis/times v1.6.0 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
