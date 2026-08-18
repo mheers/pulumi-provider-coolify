@@ -12,7 +12,7 @@ import (
 	"github.com/pulumi/pulumi/sdk/v3/go/pulumi"
 )
 
-// Triggers a deployment for a Coolify application. Changing the triggers map forces a new deployment.
+// Triggers a Coolify application deployment (`POST /api/v1/deploy?uuid=`). Use this to bring up a newly created application in the same apply as the application resource. If Coolify already queued a deploy (<span pulumi-lang-nodejs="`instantDeploy " pulumi-lang-dotnet="`InstantDeploy " pulumi-lang-go="`instantDeploy " pulumi-lang-python="`instant_deploy " pulumi-lang-yaml="`instantDeploy " pulumi-lang-java="`instantDeploy " pulumi-lang-hcl="`instant_deploy ">`instantDeploy </span>= true`), this resource adopts that deployment UUID instead of failing. Changing the triggers map forces a new deployment.
 //
 // ## Example Usage
 //
